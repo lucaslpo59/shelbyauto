@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Dashboard | Concessionária</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- Fim do Preloader -->
+
+    <!-- Botão para a Homepage -->
+    <div class="container mt-3 text-center">
+      <a href="index.html" class="btn btn-primary">🏠 Voltar para a Homepage</a>
+    </div>
+
+    <!-- Conteúdo da Página -->
+    <div class="container mt-5">
+        <div class="row text-center">
+            <div class="col-lg-3 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-car"></i> Novas Entradas</h5>
+                        <p class="card-text intake">56</p>
+                        <span class="text-success font-weight-bold">+5% <i class="fas fa-chart-line"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-exclamation-circle"></i> Casos em Aberto</h5>
+                        <p class="card-text open-cases">12</p>
+                        <span class="text-danger font-weight-bold">-20% <i class="fas fa-chart-bar"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-cogs"></i> Serviços Oferecidos</h5>
+                        <p class="card-text">Oferecemos uma ampla gama de serviços, incluindo manutenção, revisões e personalização de veículos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-users"></i> Pessoas Ajudadas</h5>
+                        <p class="card-text">Mais de 200 clientes satisfeitos com nossos serviços.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-chart-pie"></i> Estatísticas Gerais</h5>
+                        <canvas id="dashboardChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-bullhorn"></i> Últimas Notícias</h5>
+                        <p class="card-text">Fique por dentro das novidades e promoções especiais da nossa concessionária.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .card-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .shadow-sm {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          let preloader = document.getElementById("preloader");
+          
+          if (preloader) {
+              window.onload = function () {
+                  preloader.style.opacity = "0";
+                  setTimeout(() => {
+                      preloader.style.display = "none";
+                  }, 500); // Tempo para a animação desaparecer
+              };
+          }
+      });
+  </script>
+  
+    <script>
+        var ctx = document.getElementById('dashboardChart').getContext('2d');
+        var dashboardChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Carros Vendidos', 'Clientes Satisfeitos', 'Serviços Prestados'],
+                datasets: [{
+                    data: [30, 50, 20],
+                    backgroundColor: ['#28a745', '#007bff', '#ffc107']
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

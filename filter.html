@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque ShelbyAuto</title>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            background-color: #272727;
+        }
+        header {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 10px;
+    margin-top: -25px;
+    background-color: #f80000;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: #fff;
+        }
+        .products {
+            margin-top: 120px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .products-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .product-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            width: 1300px;
+            height: 550px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        .product-item:hover {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding-left: 15px;
+            flex-grow: 1;
+        }
+        .specifications, .documentation {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 10px;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+        .specifications h5, .documentation h5 {
+            margin-bottom: 5px;
+        }
+        .product-content {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .legalizado {
+            color: green;
+            font-weight: bold;
+        }
+        .nao-legalizado {
+            color: red;
+            font-weight: bold;
+        }
+
+        .nao-vendido {
+            color: green;
+            font-weight: bold;
+        }
+        .vendido {
+            color: red;
+            font-weight: bold;
+        }
+
+
+        .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.carousel-images {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel img.active {
+    opacity: 1;
+}
+
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 18px;
+    padding: 5px 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-prev { left: 5px; }
+.carousel-next { right: 5px; }
+
+
+footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 11px 0;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-weight: bold; /* Deixa todo o texto em negrito */
+}
+
+footer .inner-content {
+    padding: 34px 0;
+    color: #ffffff;
+    font-weight: bold; /* Texto em negrito */
+}
+
+footer a {
+    color: #ff0000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.p2 {
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 24px;
+    font-weight: bold; /* Deixa todo o texto em negrito */
+    font-weight: bold; /* Texto em negrito */
+}
+
+footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+    </style>
+</head>
+
+<body>
+  <header class="">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <img src="https://shelbyauto.co.za/wp-content/uploads/2017/02/FB-Logo-Dark-1.png" alt="Logo Concessionária GTA RP" style="height: 50px;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="float: left;" class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <li class="nav-item"><a class="nav-link" href="index.html">HOMEPAGE</a></li>
+                <a class="nav-link active" href="filter.html">NOSSO ESTOQUE</a></li>
+              
+                <!--  <li class="nav-item"><a class="nav-link" href="contact.html">CONTATO</a></li> -->
+            <!--   <li class=""><a class="login-link" href="login.html">ENTRAR / REGISTRAR</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  
+    <div class="container products">
+        <h2 class="text-center mb-4">Encontre seu carro ideal</h2>
+        <div class="products-container">
+            <script>
+                const carros = [
+                    { 
+                        nome: "Mustang GT", 
+                        preco: "R$ 11.179,00", 
+                        km: "130.000 KM", 
+                        motor: "1800cc", 
+                        cambio: "Manual", 
+                        vendido: true,  // 🔴 Carro foi vendido
+                        imagens: [ "https://media.discordapp.net/attachments/1317303348994637885/1343249884957900891/image.png?ex=67bc9670&is=67bb44f0&hm=224b2557775bc52e209126f6f4d94281f42590b55f922b1331f225d7b57433a9&=&format=webp&quality=lossless&width=665&height=468", 
+                                   "https://media.discordapp.net/attachments/1317303348994637885/1343249885335392326/image.png?",
+                                   "https://media.discordapp.net/attachments/1317303348994637885/1343249885725458493/image.png?"
+                        ],
+                        specs: [
+                                   "<strong>Filtro Esportivo:</strong> Cold Air Intake",
+                                   "<strong>Pistão:</strong> Forjado (destaxado)",
+                                   "<strong>Biela:</strong> Forjada",
+                                   "<strong>Cabeçote:</strong> Duto Arrombado",
+                                   "<strong>Comando:</strong> Médio",
+                                   "<strong>Radiador:</strong> Alumínio (2 fans)",
+                                   "<strong>Nitro:</strong> Não",
+                                   "<strong>Turbo:</strong> 50/63",
+                                   "<strong>Radiador de Óleo:</strong> Instalado",
+                                   "<strong>Intercooler:</strong> Não",
+                                   "<strong>Câmbio:</strong> Alongado",
+                                   "<strong>Suspensão:</strong> Original",
+                                   "<strong>Freios:</strong> Esportivo",
+                                   "<strong>Downpipe:</strong> Alto Fluxo INOX",
+                                   "<strong>Coletor ADM:</strong> Plenum 2 bancadas",
+                                   "<strong>Bancada A:</strong> 170 lb/h",
+                                   "<strong>Bancada B:</strong> 170 lb/h",
+                                   "<strong>Bomba:</strong> 54 bar",
+                                   "<strong>Moral:</strong> 0/200"
+                        ],
+                        documentation: {
+                            roda: "Liga Leve 18",
+                            turbo: "Sim",
+                            cor: "Azul",
+                            legalizado: true
+                        }
+                    },
+                ];
+            
+                carros.forEach((carro, index) => {
+                    document.write(`
+                        <div class="product-item">
+                            <div class="product-content">
+  <div class="carousel" id="carousel-${index}">
+    <button class="carousel-prev" onclick="prevImage(${index})">&#10094;</button>
+    <div class="carousel-images">
+        ${carro.imagens.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" alt="${carro.nome}">`).join('')}
+    </div>
+    <button class="carousel-next" onclick="nextImage(${index})">&#10095;</button>
+</div>
+                                <div class="product-info">
+                                    <h4>${carro.nome}</h4>
+                                    <h6>${carro.preco}</h6>
+                                    <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
+                                    ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
+                                    </p>
+                                    <p>${carro.km} | ${carro.motor} | ${carro.cambio}</p>
+                                </div>
+                                <div class="specifications">
+                                    <h5>Especificações</h5>
+                                    <ul>
+                                        ${carro.specs.map(spec => `<li>${spec}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="documentation">
+                                    <h5>Documentação</h5>
+                                    <p><strong>Roda:</strong> ${carro.documentation.roda}</p>
+                                    <p><strong>Turbo:</strong> ${carro.documentation.turbo}</p>
+                                    <p><strong>Cor:</strong> ${carro.documentation.cor}</p>
+                                    <p class="${carro.documentation.legalizado ? 'legalizado' : 'nao-legalizado'}">
+                                        ${carro.documentation.legalizado ? 'Legalizado' : 'Não Legalizado'}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <p2>COPYRIGHT © 2025 SHELBY AUTO ( BRASILIA RP ) SERVER 2 - DESENVOLVIDO BY <a href="#">Shelby Enterprises L.L.C</a></p2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <script>
+      function prevImage(index) {
+          let images = document.querySelectorAll(`#carousel-${index} .carousel-images img`);
+          let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
+          images[activeIndex].classList.remove("active");
+          let newIndex = (activeIndex - 1 + images.length) % images.length;
+          images[newIndex].classList.add("active");
+      }
+  
+      function nextImage(index) {
+          let images = document.querySelectorAll(`#carousel-${index} .carousel-images img`);
+          let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
+          images[activeIndex].classList.remove("active");
+          let newIndex = (activeIndex + 1) % images.length;
+          images[newIndex].classList.add("active");
+      }
+    </script>
+</body>
+</html>
