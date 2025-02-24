@@ -207,19 +207,11 @@
             text-decoration: underline;
         }
 
-        .preco-box {
-            border: 2px solid #000;
-            /* Borda */
-            padding: 10px;
-            /* Espaçamento */
-            width: fit-content;
-            /* Ajuste ao conteúdo */
-            border-radius: 8px;
-            /* Bordas arredondadas */
-            background-color: #242424;
-            /* Cor de fundo */
-            font-family: Arial, sans-serif;
-            /* Fonte */
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #ddd;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -305,15 +297,19 @@
     <button class="carousel-next" onclick="nextImage(${index})">&#10095;</button>
 </div>
                                 <div class="product-info">
+                                    <hr>
                                     <h4>${carro.nome}</h4>
-                                                                        <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
+                                    <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
                                     ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
                                     </p>
+                                    </hr>
+                                    <hr>
                                     <h6>${carro.preco}</h6>
-                                    <p> </p>
                                     <p>FIPE: ${carro.fipe}</p>
-
+                                    </hr>
                                     <p>${carro.km} | ${carro.placa} | ${carro.cambio}</p>
+                                    
+
                                 </div>
                                 <div class="specifications">
                                     <h5>Especificações</h5>
