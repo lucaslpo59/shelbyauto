@@ -294,9 +294,7 @@
                                     <h6>${carro.preco}</h6>
                                     <p> </p>
                                     <p>FIPE: ${carro.fipe}</p>
-                                    <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
-                                    ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
-                                    </p>
+
                                     <p>${carro.km} | ${carro.placa} | ${carro.cambio}</p>
                                 </div>
                                 <div class="specifications">
@@ -315,6 +313,9 @@
                                     </p>
                                 </div>
                             </div>
+                                                                <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
+                                    ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
+                                    </p>
                         </div>
                     `);
                 });
