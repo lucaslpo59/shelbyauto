@@ -11,18 +11,20 @@
         body {
             background-color: #272727;
         }
+
         header {
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-    height: 10px;
-    margin-top: -25px;
-    background-color: #f80000;
-    -webkit-transition: all 0.3s ease-in-out 0s;
-    -moz-transition: all 0.3s ease-in-out 0s;
-    -o-transition: all 0.3s ease-in-out 0s;
-    transition: all 0.3s ease-in-out 0s;
-}
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            height: 10px;
+            margin-top: -25px;
+            background-color: #f80000;
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            -moz-transition: all 0.3s ease-in-out 0s;
+            -o-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+        }
+
         .navbar {
             position: fixed;
             width: 100%;
@@ -30,17 +32,20 @@
             z-index: 1000;
             background-color: #fff;
         }
+
         .products {
             margin-top: 120px;
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
         }
+
         .products-container {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
+
         .product-item {
             display: flex;
             align-items: center;
@@ -53,32 +58,41 @@
             cursor: pointer;
             position: relative;
         }
+
         .product-item:hover {
             transform: scale(1.05);
         }
+
         .product-info {
             padding-left: 15px;
             flex-grow: 1;
         }
-        .specifications, .documentation {
+
+        .specifications,
+        .documentation {
             background: #f8f9fa;
             padding: 10px;
             border-radius: 10px;
             flex-grow: 1;
             max-width: 300px;
         }
-        .specifications h5, .documentation h5 {
+
+        .specifications h5,
+        .documentation h5 {
             margin-bottom: 5px;
         }
+
         .product-content {
             display: flex;
             justify-content: space-between;
             width: 100%;
         }
+
         .legalizado {
             color: green;
             font-weight: bold;
         }
+
         .nao-legalizado {
             color: red;
             font-weight: bold;
@@ -88,6 +102,7 @@
             color: green;
             font-weight: bold;
         }
+
         .vendido {
             color: red;
             font-weight: bold;
@@ -95,164 +110,174 @@
 
 
         .carousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 500px;
-    height: 500px;
-    overflow: hidden;
-    border-radius: 8px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
 
-.carousel-images {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
+        .carousel-images {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
 
-.carousel img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
 
-.carousel img.active {
-    opacity: 1;
-}
+        .carousel img.active {
+            opacity: 1;
+        }
 
-.carousel-prev, .carousel-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 18px;
-    padding: 5px 10px;
-    cursor: pointer;
-    z-index: 10;
-}
+        .carousel-prev,
+        .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
 
-.carousel-prev { left: 5px; }
-.carousel-next { right: 5px; }
+        .carousel-prev {
+            left: 5px;
+        }
+
+        .carousel-next {
+            right: 5px;
+        }
 
 
-footer {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    padding: 11px 0;
-    text-align: center;
-    font-size: 14px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    font-weight: bold; /* Deixa todo o texto em negrito */
-}
+        footer {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 11px 0;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-weight: bold;
+            /* Deixa todo o texto em negrito */
+        }
 
-footer .inner-content {
-    padding: 34px 0;
-    color: #ffffff;
-    font-weight: bold; /* Texto em negrito */
-}
+        footer .inner-content {
+            padding: 34px 0;
+            color: #ffffff;
+            font-weight: bold;
+            /* Texto em negrito */
+        }
 
-footer a {
-    color: #ff0000;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-.p2 {
-    margin-bottom: 0px;
-    font-size: 14px;
-    font-weight: 300;
-    color: #ffffff;
-    line-height: 24px;
-    font-weight: bold; /* Deixa todo o texto em negrito */
-    font-weight: bold; /* Texto em negrito */
-}
+        footer a {
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
 
-footer a:hover {
-    color: #ffffff;
-    text-decoration: underline;
-}
+        .p2 {
+            margin-bottom: 0px;
+            font-size: 14px;
+            font-weight: 300;
+            color: #ffffff;
+            line-height: 24px;
+            font-weight: bold;
+            /* Deixa todo o texto em negrito */
+            font-weight: bold;
+            /* Texto em negrito */
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
 <body>
-  <header class="">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <img src="https://shelbyauto.co.za/wp-content/uploads/2017/02/FB-Logo-Dark-1.png" alt="Logo Concessionária GTA RP" style="height: 50px;">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div style="float: left;" class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <li class="nav-item"><a class="nav-link" href="index.html">HOMEPAGE</a></li>
-                <a class="nav-link active" href="filter.html">NOSSO ESTOQUE</a></li>
-              
-                <!--  <li class="nav-item"><a class="nav-link" href="contact.html">CONTATO</a></li> -->
-            <!--   <li class=""><a class="login-link" href="login.html">ENTRAR / REGISTRAR</a></li> -->
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <img src="https://shelbyauto.co.za/wp-content/uploads/2017/02/FB-Logo-Dark-1.png"
+                    alt="Logo Concessionária GTA RP" style="height: 50px;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div style="float: left;" class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                        <li class="nav-item"><a class="nav-link" href="index.html">HOMEPAGE</a></li>
+                        <a class="nav-link active" href="filter.html">NOSSO ESTOQUE</a></li>
+
+                        <!--  <li class="nav-item"><a class="nav-link" href="contact.html">CONTATO</a></li> -->
+                        <!--   <li class=""><a class="login-link" href="login.html">ENTRAR / REGISTRAR</a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
 
-  
+
     <div class="container products">
         <h2 class="text-center mb-4">Encontre seu carro ideal</h2>
         <div class="products-container">
             <script>
                 const carros = [
-                    { 
-                        nome: "Mustang GT", 
-                        preco: "R$ 11.179,00", 
-                        km: "130.000 KM", 
-                        motor: "1800cc", 
-                        cambio: "Manual", 
-                        vendido: true,  // 🔴 Carro foi vendido
-                        imagens: [ "https://media.discordapp.net/attachments/1317303348994637885/1343249884957900891/image.png?ex=67bc9670&is=67bb44f0&hm=224b2557775bc52e209126f6f4d94281f42590b55f922b1331f225d7b57433a9&=&format=webp&quality=lossless&width=665&height=468", 
-                                   "https://media.discordapp.net/attachments/1317303348994637885/1343249885335392326/image.png?",
-                                   "https://media.discordapp.net/attachments/1317303348994637885/1343249885725458493/image.png?"
+                    {
+                        nome: "GOL G4 RALLY",
+                        preco: "R$ 15.750,00",
+                        fipe: "R$ 21.00,00",
+                        km: "000.410 KM",
+                        cambio: "Manual",
+                        placa: "XJR-0532",
+                        vendido: true,  // false, 🔴 Carro foi vendido
+                        imagens: ["https://media.discordapp.net/attachments/1343384117135282267/1343384133883269191/image.png?ex=67bd1378&is=67bbc1f8&hm=c2e55f08312f073b33086cb72309c512d588e35aed3d783db2ab41ecb84aee82&=&format=webp&quality=lossless&width=663&height=468",
+                            "https://media.discordapp.net/attachments/1343384117135282267/1343384214871085057/image.png?ex=67bd138b&is=67bbc20b&hm=e8df84b4e9656fbd5397d8cde61838a6dcb52cc361365fdff70a01b78fb8197e&=&format=webp&quality=lossless&width=655&height=468",
+                            "https://media.discordapp.net/attachments/1343384117135282267/1343384363525472256/image.png?ex=67bd13af&is=67bbc22f&hm=3490a03ff712583657c4b9abfdd8c53e25948a80f611c75785c9863750bc2bb0&=&format=webp&quality=lossless&width=769&height=468"
                         ],
                         specs: [
-                                   "<strong>Filtro Esportivo:</strong> Cold Air Intake",
-                                   "<strong>Pistão:</strong> Forjado (destaxado)",
-                                   "<strong>Biela:</strong> Forjada",
-                                   "<strong>Cabeçote:</strong> Duto Arrombado",
-                                   "<strong>Comando:</strong> Médio",
-                                   "<strong>Radiador:</strong> Alumínio (2 fans)",
-                                   "<strong>Nitro:</strong> Não",
-                                   "<strong>Turbo:</strong> 50/63",
-                                   "<strong>Radiador de Óleo:</strong> Instalado",
-                                   "<strong>Intercooler:</strong> Não",
-                                   "<strong>Câmbio:</strong> Alongado",
-                                   "<strong>Suspensão:</strong> Original",
-                                   "<strong>Freios:</strong> Esportivo",
-                                   "<strong>Downpipe:</strong> Alto Fluxo INOX",
-                                   "<strong>Coletor ADM:</strong> Plenum 2 bancadas",
-                                   "<strong>Bancada A:</strong> 170 lb/h",
-                                   "<strong>Bancada B:</strong> 170 lb/h",
-                                   "<strong>Bomba:</strong> 54 bar",
-                                   "<strong>Moral:</strong> 0/200"
+                            "<strong>Pistão:</strong> Original",
+                            "<strong>Biela:</strong> Original",
+                            "<strong>Cabeçote:</strong> Original",
+                            "<strong>Comando:</strong> Original",
+                            "<strong>Radiador:</strong> Original",
+                            "<strong>Nitro:</strong> <span style='color:red;'>Não</span>",
+                            "<strong>Turbo:</strong> <span style='color:red;'>Não</span>",
+                            "<strong>Radiador de Óleo:</strong> <span style='color:red;'>Não</span>",
+                            "<strong>Intercooler:</strong> <span style='color:red;'>Não</span>",
+                            "<strong>Câmbio:</strong> Original",
+                            "<strong>Suspensão:</strong> Original",
+                            "<strong>Freios:</strong> Original",
+                            "<strong>Coletor ESC:</strong> Original",
+                            "<strong>Coletor ADM:</strong> Original",
+                            "<strong>Moral:</strong> <span style='color:green;'>0/200</span>"
                         ],
                         documentation: {
-                            roda: "Liga Leve 18",
-                            turbo: "Sim",
-                            cor: "Azul",
+                            roda: "Original",
+                            turbo: "Não",
+                            cor: "Preto",
                             legalizado: true
                         }
                     },
                 ];
-            
+
                 carros.forEach((carro, index) => {
                     document.write(`
                         <div class="product-item">
@@ -295,33 +320,35 @@ footer a:hover {
         </div>
     </div>
     <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <p2>COPYRIGHT © 2025 SHELBY AUTO ( BRASILIA RP ) SERVER 2 - DESENVOLVIDO BY <a href="#">Shelby Enterprises L.L.C</a></p2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inner-content">
+                        <p2>COPYRIGHT © 2025 SHELBY AUTO ( BRASILIA RP ) SERVER 2 - DESENVOLVIDO BY <a href="#">Shelby
+                                Enterprises L.L.C</a></p2>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </footer>
-    
+
     <script>
-      function prevImage(index) {
-          let images = document.querySelectorAll(`#carousel-${index} .carousel-images img`);
-          let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
-          images[activeIndex].classList.remove("active");
-          let newIndex = (activeIndex - 1 + images.length) % images.length;
-          images[newIndex].classList.add("active");
-      }
-  
-      function nextImage(index) {
-          let images = document.querySelectorAll(`#carousel-${index} .carousel-images img`);
-          let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
-          images[activeIndex].classList.remove("active");
-          let newIndex = (activeIndex + 1) % images.length;
-          images[newIndex].classList.add("active");
-      }
+        function prevImage(index) {
+            let images = document.querySelectorAll(`#carousel-${index} .carousel-images img`);
+            let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
+            images[activeIndex].classList.remove("active");
+            let newIndex = (activeIndex - 1 + images.length) % images.length;
+            images[newIndex].classList.add("active");
+        }
+
+        function nextImage(index) {
+            let images = document.querySelectorAll(`#carousel-${index} .carousel-images img`);
+            let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
+            images[activeIndex].classList.remove("active");
+            let newIndex = (activeIndex + 1) % images.length;
+            images[newIndex].classList.add("active");
+        }
     </script>
 </body>
+
 </html>
