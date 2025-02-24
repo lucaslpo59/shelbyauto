@@ -291,6 +291,9 @@
 </div>
                                 <div class="product-info">
                                     <h4>${carro.nome}</h4>
+                                                                        <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
+                                    ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
+                                    </p>
                                     <h6>${carro.preco}</h6>
                                     <p> </p>
                                     <p>FIPE: ${carro.fipe}</p>
@@ -313,9 +316,6 @@
                                     </p>
                                 </div>
                             </div>
-                                                                <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
-                                    ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
-                                    </p>
                         </div>
                     `);
                 });
