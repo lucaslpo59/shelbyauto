@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Gerenciamento - Shelby Auto</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        input, button { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Adicionar Novo Carro</h2>
+        <input type="text" id="carroNome" placeholder="Nome do Carro">
+        <input type="text" id="carroPreco" placeholder="Preço">
+        <input type="text" id="carroFipe" placeholder="FIPE">
+        <input type="text" id="carroKm" placeholder="KM">
+        <input type="text" id="carroCambio" placeholder="Câmbio">
+        <input type="text" id="carroPlaca" placeholder="Placa">
+        <input type="file" id="carroImagem" accept="image/*">
+        <button onclick="salvarCarro()">Salvar Carro</button>
+        <h3>Carros Cadastrados</h3>
+        <ul id="listaCarros"></ul>
+    </div>
+
+    <script>
+        function salvarCarro() {
+            let nome = document.getElementById("carroNome").value;
+            let preco = document.getElementById("carroPreco").value;
+            let fipe = document.getElementById("carroFipe").value;
+            let km = document.getElementById("carroKm").value;
+            let cambio = document.getElementById("carroCambio").value;
+            let placa = document.getElementById("carroPlaca").value;
+            let imagemInput = document.getElementById("carroImagem");
+            let imagemURL = imagemInput.files.length > 0 ? URL.createObjectURL(imagemInput.files[0]) : "";
+
+            if (!nome || !preco || !fipe || !km || !cambio || !placa) {
+                alert("Por favor, preencha todos os campos!");
+                return;
+            }
+
+            let carro = { nome, preco, fipe, km, cambio, placa, imagem: imagemURL };
+            let carros = JSON.parse(localStorage.getItem("carros")) || [];
+            carros.push(carro);
+            localStorage.setItem("carros", JSON.stringify(carros));
+            alert("Carro salvo com sucesso!");
+            carregarCarros();
+        }
+
+        function carregarCarros() {
+            let carros = JSON.parse(localStorage.getItem("carros")) || [];
+            let lista = document.getElementById("listaCarros");
+            lista.innerHTML = "";
+            carros.forEach((carro, index) => {
+                lista.innerHTML += `<li>${carro.nome} - ${carro.preco} <button onclick="excluirCarro(${index})">Excluir</button></li>`;
+            });
+        }
+
+        function excluirCarro(index) {
+            let carros = JSON.parse(localStorage.getItem("carros")) || [];
+            carros.splice(index, 1);
+            localStorage.setItem("carros", JSON.stringify(carros));
+            carregarCarros();
+        }
+
+        carregarCarros();
+    </script>
+</body>
+</html>
