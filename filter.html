@@ -42,22 +42,27 @@
 
         .products-container {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* Mantém os carros centralizados */
+            align-items: center;
         }
 
         .product-item {
             display: flex;
             align-items: center;
             background: #fff;
-            width: 1300px;
+            width: 1200px;
             height: 550px;
             border-radius: 8px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             cursor: pointer;
             position: relative;
+            margin-left: 100px;
+            /* 🟢 Centraliza automaticamente sem problemas em telas menores */
         }
+
 
         .product-item:hover {
             transform: scale(1.05);
@@ -214,6 +219,27 @@
             background-color: #222222;
             margin: 0px 0;
         }
+        /* 🔹 Botão moderno */
+.form-btn {
+    background: linear-gradient(90deg, #2fedc4, #56CCF2); /* Azul gradiente */
+    color: rgb(58, 58, 58);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    text-align: center;
+}
+
+/* 🔹 Efeito ao passar o mouse */
+.form-btn:hover {
+    background: linear-gradient(90deg, #1E68D1, #4DB8E6);
+    transform: scale(1.05);
+}
     </style>
 </head>
 
@@ -245,92 +271,118 @@
 
     <div class="container products">
         <h2 class="text-center mb-4">Encontre seu carro ideal</h2>
-        <div class="products-container">
-            <script>
-                const carros = [
-                    {
-                        nome: "GOL G4 RALLY",
-                        preco: "R$ 15.750,00",
-                        fipe: "R$ 21.00,00",
-                        km: "000.410 KM",
-                        cambio: "Manual",
-                        placa: "XJR-0532",
-                        vendido: true,  // false, 🔴 Carro foi vendido
-                        imagens: ["https://media.discordapp.net/attachments/1343384117135282267/1343384133883269191/image.png?ex=67bd1378&is=67bbc1f8&hm=c2e55f08312f073b33086cb72309c512d588e35aed3d783db2ab41ecb84aee82&=&format=webp&quality=lossless&width=663&height=468",
-                            "https://media.discordapp.net/attachments/1343384117135282267/1343384214871085057/image.png?ex=67bd138b&is=67bbc20b&hm=e8df84b4e9656fbd5397d8cde61838a6dcb52cc361365fdff70a01b78fb8197e&=&format=webp&quality=lossless&width=655&height=468",
-                            "https://media.discordapp.net/attachments/1343384117135282267/1343384363525472256/image.png?ex=67bd13af&is=67bbc22f&hm=3490a03ff712583657c4b9abfdd8c53e25948a80f611c75785c9863750bc2bb0&=&format=webp&quality=lossless&width=769&height=468"
-                        ],
-                        specs: [
-                            "<strong>Pistão:</strong> Original",
-                            "<strong>Biela:</strong> Original",
-                            "<strong>Cabeçote:</strong> Original",
-                            "<strong>Comando:</strong> Original",
-                            "<strong>Radiador:</strong> Original",
-                            "<strong>Nitro:</strong> <span style='color:red;'>Não</span>",
-                            "<strong>Turbo:</strong> <span style='color:red;'>Não</span>",
-                            "<strong>Radiador de Óleo:</strong> <span style='color:red;'>Não</span>",
-                            "<strong>Intercooler:</strong> <span style='color:red;'>Não</span>",
-                            "<strong>Câmbio:</strong> Original",
-                            "<strong>Suspensão:</strong> Original",
-                            "<strong>Freios:</strong> Original",
-                            "<strong>Coletor ESC:</strong> Original",
-                            "<strong>Coletor ADM:</strong> Original",
-                            "<strong>Moral:</strong> <span style='color:green;'>0/200</span>"
-                        ],
-                        documentation: {
-                            roda: "Original",
-                            turbo: "Não",
-                            cor: "Preto",
-                            legalizado: true
-                        }
-                    },
-                ];
 
-                carros.forEach((carro, index) => {
-                    document.write(`
-                        <div class="product-item">
-                            <div class="product-content">
-  <div class="carousel" id="carousel-${index}">
-    <button class="carousel-prev" onclick="prevImage(${index})">&#10094;</button>
-    <div class="carousel-images">
-        ${carro.imagens.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" alt="${carro.nome}">`).join('')}
+        <!-- Esta linha estava duplicada, então removi -->
+        <div class="products-container" id="car-list"></div>
+
+    </div> <!-- Fechamento correto da "container products" -->
+
+    <!-- O script que gera os carros deve estar FORA da div principal -->
+    <script>
+        const carros = [
+            {
+                nome: "GOL G4 RALLY",
+                preco: "R$ 15.750,00",
+                fipe: "R$ 21.00,00",
+                km: "000.410 KM",
+                cambio: "Manual",
+                placa: "XJR-0532",
+
+                vendido: true,  // false, 🔴 Carro foi vendido
+                imagens: ["https://media.discordapp.net/attachments/1343384117135282267/1343384133883269191/image.png?ex=67bdbc38&is=67bc6ab8&hm=45ea2a6236eed5c47d086042daaf6f884939aa5617516848acdd59174e8bdafb&=&format=webp&quality=lossless&width=496&height=350",
+                    "https://media.discordapp.net/attachments/1343384117135282267/1343384214871085057/image.png?ex=67bd138b&is=67bbc20b&hm=e8df84b4e9656fbd5397d8cde61838a6dcb52cc361365fdff70a01b78fb8197e&=&format=webp&quality=lossless&width=655&height=468",
+                    "https://media.discordapp.net/attachments/1343384117135282267/1343384363525472256/image.png?ex=67bd13af&is=67bbc22f&hm=3490a03ff712583657c4b9abfdd8c53e25948a80f611c75785c9863750bc2bb0&=&format=webp&quality=lossless&width=769&height=468"
+                ],
+                specs: [
+                    "<strong>Pistão:</strong> Original",
+                    "<strong>Biela:</strong> Original",
+                    "<strong>Cabeçote:</strong> Original",
+                    "<strong>Comando:</strong> Original",
+                    "<strong>Radiador:</strong> Original",
+                    "<strong>Nitro:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Turbo:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Radiador de Óleo:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Intercooler:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Câmbio:</strong> Original",
+                    "<strong>Suspensão:</strong> Original",
+                    "<strong>Freios:</strong> Original",
+                    "<strong>Coletor ESC:</strong> Original",
+                    "<strong>Coletor ADM:</strong> Original",
+                    "<strong>Moral:</strong> <span style='color:green;'>0/200</span>"
+                ],
+                documentation: {
+                    roda: "Original",
+                    turbo: "Não",
+                    cor: "Preto",
+                    legalizado: true
+                }
+            },
+        ];
+
+        carros.forEach((carro, index) => {
+            document.write(`
+        <div class="product-item">
+            <div class="product-content">
+                <div class="carousel" id="carousel-${index}">
+                    <button class="carousel-prev" onclick="prevImage(${index})">&#10094;</button>
+                    <div class="carousel-images">
+                        ${carro.imagens.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" alt="${carro.nome}">`).join('')}
+                    </div>
+                    <button class="carousel-next" onclick="nextImage(${index})">&#10095;</button>
+                </div>
+                <div class="product-info">
+                    <hr>
+                    <h4>${carro.nome}</h4><h6>${carro.preco}</h6>
+                    <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
+                        ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
+                    </p>
+                    <hr>
+                    <p>FIPE: ${carro.fipe}</p>
+                    <p>${carro.km} | ${carro.placa} | ${carro.cambio}</p>
+                    
+                    <button class="form-btn" data-index="${index}">FAZER UMA PROPOSTA</button>
+                </div>
+                <div class="specifications">
+                    <h5>Especificações</h5>
+                    <ul>
+                        ${carro.specs.map(spec => `<li>${spec}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="documentation">
+                    <h5>Documentação</h5>
+                    <p><strong>Roda:</strong> ${carro.documentation.roda}</p>
+                    <p><strong>Turbo:</strong> ${carro.documentation.turbo}</p>
+                    <p><strong>Cor:</strong> ${carro.documentation.cor}</p>
+                    <p class="${carro.documentation.legalizado ? 'legalizado' : 'nao-legalizado'}">
+                        ${carro.documentation.legalizado ? 'Legalizado' : 'Não Legalizado'}
+                    </p>
+                </div>
+<div class="form-popup" id="form-${index}">
+    <h2>Preencha o Formulário</h2>
+<input type="hidden" id="carroNome-${index}" name="carroNome">
+<input type="hidden" id="carroPreco-${index}" name="carroPreco">
+<input type="hidden" id="carroFipe-${index}" name="carroFipe">
+<input type="hidden" id="carroKm-${index}" name="carroKm">
+<input type="hidden" id="carroCambio-${index}" name="carroCambio">
+<input type="hidden" id="carroPlaca-${index}" name="carroPlaca">
+
+    <input type="text" id="nome-${index}" class="popup-input" placeholder="Nome In-Game">
+    <input type="text" id="discord-${index}" class="popup-input" placeholder="Discord">
+    <input type="text" id="celular-${index}" class="popup-input" placeholder="Celular In-Game">
+    <textarea id="comentario-${index}" class="popup-textarea" placeholder="Escreva aqui a sua proposta..."></textarea>
+    <div class="popup-btn-container">
+        <button class="popup-btn submit" onclick="enviarFormulario(${index})">Enviar</button>
+        <button class="popup-btn close" onclick="closeForm(${index})">Fechar</button>
     </div>
-    <button class="carousel-next" onclick="nextImage(${index})">&#10095;</button>
 </div>
-                                <div class="product-info">
-                                    <hr>
-                                    <h4>${carro.nome}</h4><h6>${carro.preco}</h6>
-                                    <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
-                                    ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
-                                    </p>
-                                    </hr>
-                                    <hr> </hr>
-                                    <p>FIPE: ${carro.fipe}</p>
-                                    <p>${carro.km} | ${carro.placa} | ${carro.cambio}</p>
-                                    
 
-                                </div>
-                                <div class="specifications">
-                                    <h5>Especificações</h5>
-                                    <ul>
-                                        ${carro.specs.map(spec => `<li>${spec}</li>`).join('')}
-                                    </ul>
-                                </div>
-                                <div class="documentation">
-                                    <h5>Documentação</h5>
-                                    <p><strong>Roda:</strong> ${carro.documentation.roda}</p>
-                                    <p><strong>Turbo:</strong> ${carro.documentation.turbo}</p>
-                                    <p><strong>Cor:</strong> ${carro.documentation.cor}</p>
-                                    <p class="${carro.documentation.legalizado ? 'legalizado' : 'nao-legalizado'}">
-                                        ${carro.documentation.legalizado ? 'Legalizado' : 'Não Legalizado'}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    `);
-                });
-            </script>
+
+            </div>
         </div>
+    `);
+        });
+    </script>
+    </div>
     </div>
     <footer>
         <div class="container">
@@ -345,6 +397,282 @@
         </div>
     </footer>
 
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".form-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    let index = this.getAttribute("data-index");
+                    openForm(index);
+                });
+            });
+
+            // 🔹 Esconde todos os formulários no carregamento
+            document.querySelectorAll(".form-popup").forEach(form => {
+                form.style.display = "none";
+            });
+        });
+
+        function openForm(index) {
+            let form = document.getElementById(`form-${index}`);
+
+            if (!form) {
+                console.error(`❌ Erro: Formulário form-${index} não encontrado.`);
+                return;
+            }
+
+            form.style.display = "flex";
+            setTimeout(() => {
+                form.classList.add("show"); // 🔹 Adiciona a animação ao abrir
+            }, 10);
+
+            let productItem = document.querySelectorAll(".product-item")[index];
+
+            if (!productItem) {
+                console.error("❌ Erro: O elemento .product-item não foi encontrado.");
+                return;
+            }
+
+            let carRect = productItem.getBoundingClientRect();
+            form.style.left = `${carRect.right + 15}px`;
+            form.style.top = `${carRect.top}px`;
+
+            // 🔹 Pegando informações completas do carro
+            if (carros[index]) {
+                let carro = carros[index];
+
+                // 🛑 Atualiza os campos ocultos no formulário
+                document.getElementById(`carroNome-${index}`).value = carro.nome;
+                document.getElementById(`carroPreco-${index}`).value = carro.preco;
+                document.getElementById(`carroFipe-${index}`).value = carro.fipe;
+                document.getElementById(`carroKm-${index}`).value = carro.km;
+                document.getElementById(`carroCambio-${index}`).value = carro.cambio;
+                document.getElementById(`carroPlaca-${index}`).value = carro.placa;
+            } else {
+                console.warn(`⚠️ Nenhum carro encontrado no índice ${index}`);
+            }
+
+            // 🔹 Adicionando evento ao botão de envio do formulário
+            let submitButton = form.querySelector(".popup-btn.submit");
+            if (submitButton) {
+                submitButton.onclick = function () {
+                    enviarFormulario(index);
+                };
+            }
+        }
+
+        // 🔹 Função para fechar o formulário e limpar os campos
+        function closeForm(index) {
+            let form = document.getElementById(`form-${index}`);
+            if (form) {
+                form.classList.remove("show"); // 🔹 Remove animação de abertura
+                setTimeout(() => {
+                    form.style.display = "none";
+                }, 300);
+
+                // 🔹 Limpa os campos do formulário, incluindo inputs e textarea
+                form.querySelectorAll("input, textarea").forEach(input => {
+                    if (input.type !== "hidden") { // Mantém os campos ocultos com informações do carro
+                        input.value = "";
+                    }
+                });
+            }
+        }
+
+        // 🔹 Função para enviar o formulário
+        function enviarFormulario(index) {
+            let form = document.getElementById(`form-${index}`);
+
+            if (!form) {
+                console.error(`❌ Erro: Formulário form-${index} não encontrado.`);
+                return;
+            }
+
+            // 🔹 Simula envio de formulário (aqui você pode adicionar requisição para backend ou Discord Webhook)
+            console.log("✅ Formulário enviado com sucesso!");
+
+            // 🔹 Fecha e limpa o formulário após o envio
+            closeForm(index);
+        }
+
+
+        // Estilos CSS corrigidos
+        document.head.insertAdjacentHTML("beforeend", `
+<style>
+
+/* 🔹 Melhorando a posição do formulário */
+
+
+/* 🔹 Esconde o formulário ao carregar a página */
+.form-popup {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 105%; /* Mantém o formulário ao lado do carro */
+    margin-left: -110px;
+    margin-top: -170px;
+background: linear-gradient(269deg, #efeded, #efeded);
+    width: 400px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+    border: 2px solid #ddd;
+    opacity: 0; /* 🔹 Inicia invisível */
+    transform: scale(0.9); /* 🔹 Efeito de zoom */
+    transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Quando for exibido, faz a animação */
+.form-popup.show {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 🔹 Mantém o título azul gradiente */
+.form-popup h2 {
+               background: linear-gradient(269deg, #efeded, #efeded);
+    color: #000000;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    margin: -25px -25px 20px -25px;
+    text-align: center;
+    width: calc(100% + 50px);
+}
+
+/* 🔹 Inputs */
+.popup-input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* 🔹 Botões lado a lado */
+.popup-btn-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* 🔹 Caixa de Comentário Opcional */
+.popup-textarea {
+    width: 100%;
+    height: 100px;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: none;
+}
+
+/* 🔹 Botão Enviar */
+.popup-btn.submit {
+    flex: 1;
+    background: #ffffff;
+    color: #141313;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    width: 170px;
+}
+
+.popup-btn.submit:hover {
+    background: #138496;
+}
+
+/* 🔹 Botão Fechar */
+.popup-btn.close {
+    flex: 1;
+    background: #000000c7;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    width: 170px;
+}
+
+
+`);
+
+    </script>
+
+    <script>
+
+        function enviarFormulario(index) {
+            let nomeCarro = document.getElementById(`carroNome-${index}`).value;
+            let carroPreco = document.getElementById(`carroPreco-${index}`).value;
+            let carroFipe = document.getElementById(`carroFipe-${index}`).value;
+            let carroKm = document.getElementById(`carroKm-${index}`).value;
+            let carroCambio = document.getElementById(`carroCambio-${index}`).value;
+            let carroPlaca = document.getElementById(`carroPlaca-${index}`).value;
+            let nome = document.getElementById(`nome-${index}`).value;
+            let discord = document.getElementById(`discord-${index}`).value;
+            let celular = document.getElementById(`celular-${index}`).value;
+            let comentario = document.getElementById(`comentario-${index}`).value || "Nenhum comentário";
+
+            if (!nome || !discord || !celular) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            let mensagem = {
+    username: "Novo Formulário",
+    avatar_url: "https://img.freepik.com/psd-gratuitas/icone-do-whatsapp-isolado-ilustracao-de-renderizacao-3d_47987-9785.jpg",
+    content: `📩 **SAQ > ( Entrar Em Contato )**\n\n
+### 🔹 **Informações do Veículo:**\n
+🚗 **Carro:** \`${nomeCarro}\`\n
+💰 **Preço:** \`${carroPreco}\`\n
+📊 **FIPE:** \`${carroFipe}\`\n
+🛣️ **KM:** \`${carroKm}\`\n
+⚙ **Câmbio:** \`${carroCambio}\`\n
+🔢 **Placa:** \`${carroPlaca}\`\n
+
+### 🔹 **Dados do Interessado:**\n
+👤 **Nome:** \`${nome}\`\n
+🎧 **Discord:** \`${discord}\`\n
+📱 **Celular In-Game:** \`${celular}\`\n
+💬 **Comentário:** \`${comentario}\`\n
+`
+};
+
+
+            fetch("https://discordapp.com/api/webhooks/1343741774644117534/zoYLMvqda0hJRJNjDtBzE_3DNN9-EY651LjHIdpNSCygGjHE-Xjxln0uxjBSIbq8RiiZ", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(mensagem)
+            }).then(response => {
+                if (response.ok) {
+                    alert("Formulário enviado com sucesso!");
+                    closeForm(index); // Fecha o formulário após envio
+                } else {
+                    alert("Erro ao enviar formulário.");
+                }
+            }).catch(error => {
+                alert("Erro de conexão: " + error.message);
+            });
+        }
+
+
+    </script>
     <script>
         function prevImage(index) {
             let images = document.querySelectorAll(`#carousel-${index} .carousel-images img`);
