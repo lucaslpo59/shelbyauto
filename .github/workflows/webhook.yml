@@ -1,8 +1,9 @@
 name: Enviar Relatório Webhook
 
 on:
+  workflow_dispatch:  # Permite rodar manualmente
   schedule:
-    - cron: '0 12 * * *'  # Executa todo dia às 12h UTC (ajuste conforme necessário)
+    - cron: '0 0 * * *'  # Executa todo dia à meia-noite UTC
 
 jobs:
   run_script:
