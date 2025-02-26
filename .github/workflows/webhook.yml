@@ -17,4 +17,4 @@ jobs:
         run: pip install requests
 
       - name: Executar o script
-        run: python enviar_webhook.py
+        run: python shelbyauto/assets/js/enviar_webhook.py
