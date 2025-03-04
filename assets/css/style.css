@@ -1339,7 +1339,7 @@ p, span, h1, h2, h3, h4, h5, h6, a {
 	cursor: pointer;
 	color: #000000;
 	position: relative;
-	margin-left: 100px;
+	margin-left: -550px;
 	/* 🟢 Centraliza automaticamente sem problemas em telas menores */
 }
 
@@ -1497,6 +1497,15 @@ hr {
 	height: 2px;
 	background-color: #222222;
 	margin: 0px 0;
+}
+
+.form-popup.show {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+    display: flex;
+    left: 1328px;
+    top: 163.75px;
 }
 
 /* 🔹 Botão moderno */
