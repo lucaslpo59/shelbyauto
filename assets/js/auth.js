@@ -4,12 +4,13 @@ import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/fi
 
 // 🔹 Configuração do Firebase (Substitua pelos seus dados reais)
 const firebaseConfig = {
-    apiKey: "SUA_API_KEY",
-    authDomain: "SEU_PROJETO.firebaseapp.com",
-    projectId: "SEU_PROJECT_ID",
-    storageBucket: "SEU_STORAGE_BUCKET",
-    messagingSenderId: "SEU_SENDER_ID",
-    appId: "SEU_APP_ID"
+    apiKey: "AIzaSyCmzjt8A60JQvqiARuqqySxZQ3EnxQ05Tw",
+    authDomain: "shelbyauto-4c8f5.firebaseapp.com",
+    projectId: "shelbyauto-4c8f5",
+    storageBucket: "shelbyauto-4c8f5.appspot.com",
+    messagingSenderId: "118535915272",
+    appId: "1:118535915272:web:60912ed96a3d202175cebd",
+    measurementId: "G-MYQG7J4YZK"
 };
 
 // 🔹 Inicializa o Firebase
