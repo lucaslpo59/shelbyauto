@@ -1571,7 +1571,7 @@ max-width: 200px;
 /* 🔹 Centralização da página */
 body {
     background-color: #1e1e1e;
-    color: white;
+    color: rgb(0, 0, 0);
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
