@@ -189,15 +189,16 @@ footer a:hover {
                 <li class="nav-item"><a class="nav-link" href="filter.html">NOSSO ESTOQUE</a></li>
 
                 <div class="user-menu" id="userMenu">
-                  <div class="user-profile" onclick="toggleMenu()" style="display: none;">
+                  <div class="user-profile" onclick="toggleMenu()">
                       <img src="https://i.pravatar.cc/50" id="userAvatar" alt="Avatar">
                       <span id="userName">Usuário</span>
+                      <i class="arrow-down"></i> <!-- Ícone de seta -->
                   </div>
                   <div class="dropdown-menu" id="dropdownMenu">
                       <ul>
-                          <li><a href="#">Perfil</a></li>
-                          <li><a href="#">Configurações</a></li>
-                          <li><a href="#" id="logout">Sair</a></li>
+                          <li><a href="profile.html"><i class="fas fa-user"></i> Meu Perfil</a></li>
+                          <li><a href="settings.html"><i class="fas fa-cog"></i> Configurações</a></li>
+                          <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                       </ul>
                   </div>
               </div>
