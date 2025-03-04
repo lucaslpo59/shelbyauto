@@ -1,20 +1,30 @@
-// 🔹 Importando Firebase Auth
+// 🔹 Importando os módulos do Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// 🔹 Obtém a instância de autenticação do Firebase
-const auth = getAuth();
+// 🔹 Configuração do Firebase (Substitua pelos seus dados reais)
+const firebaseConfig = {
+    apiKey: "SUA_API_KEY",
+    authDomain: "SEU_PROJETO.firebaseapp.com",
+    projectId: "SEU_PROJECT_ID",
+    storageBucket: "SEU_STORAGE_BUCKET",
+    messagingSenderId: "SEU_SENDER_ID",
+    appId: "SEU_APP_ID"
+};
 
-// 🔹 Observa mudanças no estado de autenticação (login/logout)
+// 🔹 Inicializa o Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// 🔹 Observa mudanças no estado de autenticação do usuário
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // Se o usuário estiver logado, exibe o menu com os dados
         document.querySelector(".user-profile").style.display = "flex";
-        document.getElementById("loginRegister").style.display = "none"; // Esconde o link de login
+        document.getElementById("loginRegister").style.display = "none";
 
         document.getElementById("userName").textContent = user.displayName || "Usuário";
         document.getElementById("userAvatar").src = user.photoURL || "https://i.pravatar.cc/50";
     } else {
-        // Se não estiver logado, esconde o menu e exibe "Fazer Login / Registrar"
         document.querySelector(".user-profile").style.display = "none";
         document.getElementById("loginRegister").style.display = "block";
     }
@@ -25,11 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const logoutBtn = document.getElementById("logout");
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function(event) {
-            event.preventDefault(); // Evita recarregar a página
-
+            event.preventDefault();
             signOut(auth).then(() => {
                 alert("Você saiu da conta!");
-                window.location.href = "login.html"; // Redireciona para a página de login
+                window.location.href = "login.html";
             }).catch((error) => {
                 console.error("Erro ao sair:", error);
                 alert("Erro ao sair. Verifique o console.");
