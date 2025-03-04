@@ -174,46 +174,49 @@ footer a:hover {
     </div>  
 
     <!-- Cabeçalho -->
-    <header class="">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <img src="https://i.ibb.co/QyrTP0y/A-c-pia.png" alt="Logo Concessionária GTA RP" style="height: 50px;">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div style="float: left;" class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="homepage.html">HOMEPAGE</a>
-                </li> 
-                <li class="nav-item"><a class="nav-link" href="filter.html">NOSSO ESTOQUE</a></li>
-
-                <div class="user-menu" id="userMenu">
-                  <div class="user-profile" onclick="toggleMenu()" style="display: none;">
-                      <img src="https://i.pravatar.cc/50" id="userAvatar" alt="Avatar">
-                      <span id="userName">Usuário</span>
-                  </div>
-                  <div class="dropdown-menu" id="dropdownMenu">
-                      <ul>
-                          <li><a href="#">Perfil</a></li>
-                          <li><a href="#">Configurações</a></li>
-                          <li><a href="#" id="logout">Sair</a></li>
+    <body>
+      <header class="">
+          <nav class="navbar navbar-expand-lg">
+              <div class="container">
+                  <img src="https://i.ibb.co/QyrTP0y/A-c-pia.png"
+                      alt="Logo Concessionária GTA RP" style="height: 50px;">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarResponsive">
+                      <ul class="navbar-nav ml-auto">
+                          <li class="nav-item">
+                              <a class="nav-link" href="homepage.html">HOMEPAGE</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link active" href="filter.html">NOSSO ESTOQUE</a>
+                          </li>
                       </ul>
                   </div>
+  
+                  <!-- Menu do Usuário -->
+                  <div class="user-menu" id="userMenu">
+                      <div class="user-profile" onclick="toggleMenu()" style="display: none;">
+                          <img src="https://i.pravatar.cc/50" id="userAvatar" alt="Avatar">
+                          <span id="userName">Usuário</span>
+                      </div>
+                      <div class="dropdown-menu" id="dropdownMenu">
+                          <ul>
+                              <li><a href="#">Perfil</a></li>
+                              <li><a href="#">Configurações</a></li>
+                              <li><a href="#" id="logout">Sair</a></li>
+                          </ul>
+                      </div>
+                  </div>
+  
+                  <!-- Link para login/registro -->
+                  <div id="loginRegister" style="display: none;">
+                      <a href="index.html">Fazer Login / Registrar</a>
+                  </div>
               </div>
-              
-              <!-- Link para login/registro -->
-              <div id="loginRegister" style="display: none;">
-                  <a href="index.html">Fazer Login / Registrar</a>
-              </div>
-              
-                <!--  <li class="nav-item"><a class="nav-link" href="contact.html">CONTATO</a></li> -->
-            <!--   <li class=""><a class="login-link" href="login.html">ENTRAR / REGISTRAR</a></li> -->
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+          </nav>
+      </header>
 
 
     <script type="module">
