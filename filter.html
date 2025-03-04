@@ -785,24 +785,38 @@ ${fotoURL ? `🖼️ **Foto do Veículo:** [Clique para ver](${fotoURL})\n` : ""
     }
 }
 </script>
-    <script>
-        function prevImage(index) {
-            let images = document.querySelectorAll(`#carousel-${index} .carousel-images img`);
-            let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
-            images[activeIndex].classList.remove("active");
-            let newIndex = (activeIndex - 1 + images.length) % images.length;
-            images[newIndex].classList.add("active");
-        }
 
-        function nextImage(index) {
-            let images = document.querySelectorAll(`#carousel-${index} .carousel-images img`);
-            let activeIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
-            images[activeIndex].classList.remove("active");
-            let newIndex = (activeIndex + 1) % images.length;
-            images[newIndex].classList.add("active");
-        }
 
-    </script>
+<script>
+    function toggleMenu() {
+        let menu = document.getElementById("dropdownMenu");
+        menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+
+    // Fecha o menu se o usuário clicar fora dele
+    document.addEventListener("click", function (event) {
+        let menu = document.getElementById("dropdownMenu");
+        let profile = document.querySelector(".user-profile");
+
+        if (!profile.contains(event.target) && !menu.contains(event.target)) {
+            menu.style.display = "none";
+        }
+    });
+
+    // Simulando um usuário logado (pode vir de API, LocalStorage ou Backend)
+    document.addEventListener("DOMContentLoaded", function () {
+        let user = {
+            name: "Lucas",
+            avatar: "https://i.pravatar.cc/50" // Substitua pela URL do avatar real
+        };
+
+        // Atualiza os dados do usuário
+        document.getElementById("userName").textContent = user.name;
+        document.getElementById("userAvatar").src = user.avatar;
+    });
+</script>
+
+
 </body>
 
 </html>
