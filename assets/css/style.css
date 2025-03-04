@@ -1351,6 +1351,7 @@ header {
 .documentation {
 	background: #f8f9fa;
 	padding: 10px;
+	color: #050505;
 	border-radius: 10px;
 	flex-grow: 1;
 	max-width: 300px;
