@@ -120,7 +120,6 @@ body::before {
   padding: 14px;
   width: 100%;
   border: 2px solid;
-
     font-size: 16px;
     font-weight: bold;
     border-radius: 25px;
@@ -214,7 +213,7 @@ body::before {
       </div>
       <button class="login-btn" onclick="login()">LOGIN</button>
       <button class="register-btn" onclick="register()">REGISTRAR</button>
-      <button class="btn-skip orange">PULAR LOGIN</button>
+      <button class="btn-skip orange" onclick="skipLogin()">PULAR LOGIN</button>
     </div>
   </div>
 
@@ -272,8 +271,8 @@ body::before {
   </script>
 
 <script>
-  function btn-skip() {
-      window.location.href = "homepage.html"; 
+    function skipLogin() {
+      window.location.href = "home.html"; // Altere para a página desejada
   }
 </script>
 
