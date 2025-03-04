@@ -1286,27 +1286,6 @@ body {
 	background-color: #272727;
 }
 
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 0px;
-}
-
-.h4, h4 {
-    font-size: 1.5rem;
-}
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-    margin-bottom: .5rem;
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    color:  #070707;
-}
-}
-h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
-    margin-bottom: .5rem;
-}
-
 header {
 	position: absolute;
 	z-index: 1;
@@ -1370,9 +1349,8 @@ header {
 
 .specifications,
 .documentation {
-	background: #f8f9fa;
-	padding: 10px;
-	color: #050505;
+	background: #2c2c2cf5;
+	padding: 0px;
 	border-radius: 10px;
 	flex-grow: 1;
 	max-width: 300px;
