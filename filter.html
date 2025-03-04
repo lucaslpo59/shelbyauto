@@ -835,8 +835,26 @@ ${fotoURL ? `🖼️ **Foto do Veículo:** [Clique para ver](${fotoURL})\n` : ""
     });
 </script>
 
+    <!-- 🔹 Importando o Firebase e Script Global -->
+    <script type="module" src="assets/js/auth.js"></script>
 
-<script type="module" src="assets/js/auth.js"></script>
+    <!-- 🔹 Script para abrir/fechar o menu do usuário -->
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById("dropdownMenu");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+
+        // Fecha o menu se o usuário clicar fora dele
+        document.addEventListener("click", function (event) {
+            let menu = document.getElementById("dropdownMenu");
+            let profile = document.querySelector(".user-profile");
+
+            if (!profile.contains(event.target) && !menu.contains(event.target)) {
+                menu.style.display = "none";
+            }
+        });
+    </script>
 </body>
 
 </html>
