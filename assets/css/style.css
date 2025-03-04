@@ -1300,6 +1300,10 @@ header {
 	transition: all 0.3s ease-in-out 0s;
 }
 
+p, span, h1, h2, h3, h4, h5, h6, a {
+    color: #fff !important; /* 🔹 Garante que o texto fique branco visível */
+}
+
 .navbar {
 	position: fixed;
 	width: 100%;
