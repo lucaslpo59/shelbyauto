@@ -188,10 +188,10 @@ footer a:hover {
                 </li> 
                 <li class="nav-item"><a class="nav-link" href="filter.html">NOSSO ESTOQUE</a></li>
 
-                <div class="user-menu">
-                  <div class="user-profile" onclick="toggleMenu()">
+                <div class="user-menu" id="userMenu">
+                  <div class="user-profile" onclick="toggleMenu()" style="display: none;">
                       <img src="https://i.pravatar.cc/50" id="userAvatar" alt="Avatar">
-                      <span id="userName">Teste</span>
+                      <span id="userName">Usuário</span>
                   </div>
                   <div class="dropdown-menu" id="dropdownMenu">
                       <ul>
@@ -202,6 +202,10 @@ footer a:hover {
                   </div>
               </div>
               
+              <!-- Link para login/registro -->
+              <div id="loginRegister" style="display: none;">
+                  <a href="login.html">Fazer Login / Registrar</a>
+              </div>
               
                 <!--  <li class="nav-item"><a class="nav-link" href="contact.html">CONTATO</a></li> -->
             <!--   <li class=""><a class="login-link" href="login.html">ENTRAR / REGISTRAR</a></li> -->
@@ -317,26 +321,42 @@ footer a:hover {
 
 
 <script type="module">
-  // 🔹 Importando os módulos necessários do Firebase
-  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  // 🔹 Importando Firebase Auth
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-  // 🔹 Obtendo a instância de autenticação do Firebase
+  // 🔹 Obtém a instância de autenticação do Firebase
   const auth = getAuth();
 
-  // 🔹 Evento de clique no botão "Sair"
+  // 🔹 Observa mudanças no estado de autenticação (login/logout)
+  onAuthStateChanged(auth, (user) => {
+      if (user) {
+          // Se o usuário estiver logado, exibe o menu com os dados
+          document.querySelector(".user-profile").style.display = "flex";
+          document.getElementById("loginRegister").style.display = "none"; // Esconde o link de login
+
+          document.getElementById("userName").textContent = user.displayName || "Usuário";
+          document.getElementById("userAvatar").src = user.photoURL || "https://i.pravatar.cc/50";
+
+      } else {
+          // Se não estiver logado, esconde o menu e exibe "Fazer Login / Registrar"
+          document.querySelector(".user-profile").style.display = "none";
+          document.getElementById("loginRegister").style.display = "block";
+      }
+  });
+
+  // 🔹 Logout do usuário
   document.getElementById("logout").addEventListener("click", function(event) {
-      event.preventDefault(); // Evita que a página recarregue
+      event.preventDefault(); // Evita recarregar a página
 
       signOut(auth).then(() => {
           alert("Você saiu da conta!");
-          window.location.href = "index.html"; // Redireciona para a página de login
+          window.location.href = "login.html"; // Redireciona para a página de login
       }).catch((error) => {
           console.error("Erro ao sair:", error);
           alert("Erro ao sair. Verifique o console.");
       });
   });
 </script>
-
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
