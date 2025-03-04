@@ -316,15 +316,18 @@ footer a:hover {
   </script>
 
 
-<script>
-  // Obtém a instância de autenticação do Firebase
-  const auth = firebase.auth();
+<script type="module">
+  // 🔹 Importando os módulos necessários do Firebase
+  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-  // Evento de clique no botão "Sair"
+  // 🔹 Obtendo a instância de autenticação do Firebase
+  const auth = getAuth();
+
+  // 🔹 Evento de clique no botão "Sair"
   document.getElementById("logout").addEventListener("click", function(event) {
       event.preventDefault(); // Evita que a página recarregue
 
-      auth.signOut().then(() => {
+      signOut(auth).then(() => {
           alert("Você saiu da conta!");
           window.location.href = "index.html"; // Redireciona para a página de login
       }).catch((error) => {
@@ -333,6 +336,7 @@ footer a:hover {
       });
   });
 </script>
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
