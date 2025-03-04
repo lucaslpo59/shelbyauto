@@ -1282,7 +1282,7 @@ text-decoration: underline;
 
 
 /* 🟢 CSS DO HTML filter.html */
-body {
+body.filter {
     background-color: #1e1e1e;
     color: #ddd; /* 🔹 Agora o texto ficará mais visível */
 }
