@@ -1337,6 +1337,7 @@ p, span, h1, h2, h3, h4, h5, h6, a {
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	cursor: pointer;
+	color: #000000;
 	position: relative;
 	margin-left: 100px;
 	/* 🟢 Centraliza automaticamente sem problemas em telas menores */
