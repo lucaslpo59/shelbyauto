@@ -317,14 +317,19 @@ footer a:hover {
 
 
 <script>
+  // Obtém a instância de autenticação do Firebase
+  const auth = firebase.auth();
+
+  // Evento de clique no botão "Sair"
   document.getElementById("logout").addEventListener("click", function(event) {
-      event.preventDefault(); // Evita que o link recarregue a página
+      event.preventDefault(); // Evita que a página recarregue
 
       auth.signOut().then(() => {
           alert("Você saiu da conta!");
           window.location.href = "index.html"; // Redireciona para a página de login
       }).catch((error) => {
           console.error("Erro ao sair:", error);
+          alert("Erro ao sair. Verifique o console.");
       });
   });
 </script>
