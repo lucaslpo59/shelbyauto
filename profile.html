@@ -75,4 +75,24 @@
 
     <!-- 🔹 Importando o Firebase e Script Global -->
     <script type="module" src="assets/js/auth.js"></script>
+
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById("dropdownMenu");
+            if (menu) {
+                menu.style.display = (menu.style.display === "block") ? "none" : "block";
+            }
+        }
+    
+        // Fecha o menu ao clicar fora dele
+        document.addEventListener("click", function (event) {
+            let menu = document.getElementById("dropdownMenu");
+            let profile = document.querySelector(".user-profile");
+    
+            if (menu && profile && !profile.contains(event.target) && !menu.contains(event.target)) {
+                menu.style.display = "none";
+            }
+        });
+    </script>
+    
 </html>
