@@ -167,7 +167,7 @@ body::before {
             .then((userCredential) => {
                 console.log("Login bem-sucedido:", userCredential.user);
                 alert("Login bem-sucedido!");
-                window.location.href = "dashboard.html";
+                window.location.href = "homepage.html";
             })
             .catch((error) => {
                 console.error("Erro ao fazer login:", error);
@@ -194,7 +194,7 @@ body::before {
 
 <script>
   function skipLogin() {
-      window.location.href = "homepage.html"; // Altere para o destino desejado
+      window.location.href = "homepage.html"; 
   }
 </script>
 
