@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
             signOut(auth).then(() => {
                 alert("Você saiu da conta!");
-                window.location.href = "index.html";
+                window.location.href = "login.html";
             }).catch((error) => {
                 console.error("Erro ao sair:", error);
                 alert("Erro ao sair. Verifique o console.");
