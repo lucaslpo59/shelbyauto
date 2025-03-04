@@ -315,6 +315,21 @@ footer a:hover {
       });
   </script>
 
+
+<script>
+  document.getElementById("logout").addEventListener("click", function(event) {
+      event.preventDefault(); // Evita que o link recarregue a página
+
+      auth.signOut().then(() => {
+          alert("Você saiu da conta!");
+          window.location.href = "login.html"; // Redireciona para a página de login
+      }).catch((error) => {
+          console.error("Erro ao sair:", error);
+      });
+  });
+</script>
+
+
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
