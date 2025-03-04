@@ -83,6 +83,11 @@ footer a:hover {
     text-decoration: underline;
 }
 
+
+
+
+
+
 /* Container do menu */
 .user-menu {
     position: relative;
@@ -124,7 +129,7 @@ footer a:hover {
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 50px;
     right: 0;
     background: white;
     border-radius: 5px;
@@ -182,8 +187,8 @@ footer a:hover {
                     <a class="nav-link active" href="homepage.html">HOMEPAGE</a>
                 </li> 
                 <li class="nav-item"><a class="nav-link" href="filter.html">NOSSO ESTOQUE</a></li>
+
                 <div class="user-menu">
-                  
                   <div class="user-profile" onclick="toggleMenu()">
                       <img src="https://i.pravatar.cc/50" id="userAvatar" alt="Avatar">
                       <span id="userName">Lucas</span>
@@ -278,14 +283,33 @@ footer a:hover {
 
 
     <script>
+      function toggleMenu() {
+          let menu = document.getElementById("dropdownMenu");
+          if (menu.style.display === "block") {
+              menu.style.display = "none";
+          } else {
+              menu.style.display = "block";
+          }
+      }
+  
+      // Fecha o menu se o usuário clicar fora dele
+      document.addEventListener("click", function (event) {
+          let menu = document.getElementById("dropdownMenu");
+          let profile = document.querySelector(".user-profile");
+  
+          if (!profile.contains(event.target) && !menu.contains(event.target)) {
+              menu.style.display = "none";
+          }
+      });
+  
+      // Simulação de usuário logado (pode vir de API, LocalStorage ou Backend)
       document.addEventListener("DOMContentLoaded", function () {
-          // Simula um usuário logado (pode vir de um backend ou localStorage)
           let user = {
               name: "Lucas",
-              avatar: "https://i.pravatar.cc/50" // Substitua pela URL real do avatar
+              avatar: "https://i.pravatar.cc/50" // Altere para o avatar real
           };
   
-          // Exibe o perfil
+          // Atualiza os dados do usuário
           document.getElementById("userName").textContent = user.name;
           document.getElementById("userAvatar").src = user.avatar;
       });
