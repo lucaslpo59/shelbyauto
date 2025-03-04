@@ -135,10 +135,21 @@ footer a:hover {
                     <a class="nav-link active" href="homepage.html">HOMEPAGE</a>
                 </li> 
                 <li class="nav-item"><a class="nav-link" href="filter.html">NOSSO ESTOQUE</a></li>
-                <div class="user-profile" id="userProfile">
-                  <img src="default-avatar.png" id="userAvatar" alt="Avatar">
-                  <span id="userName">Usuário</span>
+                <div class="user-menu">
+                  
+                  <div class="user-profile" onclick="toggleMenu()">
+                      <img src="https://i.pravatar.cc/50" id="userAvatar" alt="Avatar">
+                      <span id="userName">Lucas</span>
+                  </div>
+                  <div class="dropdown-menu" id="dropdownMenu">
+                      <ul>
+                          <li><a href="#">Perfil</a></li>
+                          <li><a href="#">Configurações</a></li>
+                          <li><a href="#">Sair</a></li>
+                      </ul>
+                  </div>
               </div>
+              
               
                 <!--  <li class="nav-item"><a class="nav-link" href="contact.html">CONTATO</a></li> -->
             <!--   <li class=""><a class="login-link" href="login.html">ENTRAR / REGISTRAR</a></li> -->
