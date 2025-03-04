@@ -1,173 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="assets/images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-    <title>ShelbyAuto</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-
-  </head>
-
-  <body>
-
-    <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>  
-    <!-- ***** Preloader End ***** -->
-
-    <!-- Header -->
-    <header class="">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>Car Dealer <em>Website</em></h2></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div style="float: left;" class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home
-                      <span class="sr-only">(current)</span>
-                    </a>
-                </li> 
-
-                <li class="nav-item"><a class="nav-link" href="filter.html">Filter</a></li>
-                
-                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                <li class=""><a class="login-link" href="login.html">Login/Register</a></li>
-              
-               
-            </ul>
-            
-          </div>
-          
-        </div>
-        
-      </nav>
-     
-    </header>
-
-    <!-- Page Content -->
-    <!-- Banner Starts Here -->
-
-    <div class="banner header-text">
-      <!-- <div class="owl-banner owl-carousel">
-        <div class="banner-item-01">
-          <div class="text-content">
-            <h4>Find your car today!</h4>
-            <h2>Lorem ipsum dolor sit amet</h2>
-          </div>
-        </div>
-        <div class="banner-item-02">
-          <div class="text-content">
-            <h4>Fugiat Aspernatur</h4>
-            <h2>Laboriosam reprehenderit ducimus</h2>
-          </div>
-        </div>
-        <div class="banner-item-03">
-          <div class="text-content">
-            <h4>Saepe Omnis</h4>
-            <h2>Quaerat suscipit unde minus dicta</h2>
-          </div>
-        </div>
-      </div> -->
-    </div>
-
-    <!-- Banner Ends Here -->
-
-    <section class="services custom-gradient">
-        <div class="d-flex flex-column align-items-center">
-          <div class="mx-1" style="background-color: #fff; padding: 30px; width: 500px; border-radius: 10px;">
-            <h2 class='mb-5'>Login</h2>
-            <form style="max-width: 720px; width: 100%;">
-              <div class=" mb-3">
-                <div class="col mb-3">
-                  <label class="form-label mb-0">Enter your Username</label>
-                  <input type="text" class="form-control" placeholder="Enter Username" required />
-                </div>
-                <div class="col">
-                  <label class="form-label mb-0">Enter your Password</label>
-                  <input type="text" placeholder="Enter your password" class="form-control" required />
-                </div>
-              </div>
-             
-              
-              <div class='mb-5'>
-                <button type='submit' id='submit' class="btn btn-primary"><a class="text-reset" style="color: white;" href="#">Submit</a></button>
-               
-                <button type='submit' id='submit' class="btn btn-light float-right"><a class="text-reset"  href="register.html">Register</a></button>
-              </div>
-            </form>
-          </div>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
   
-  
-      </section>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
-    
+  <style>
+    body {
+      background: radial-gradient(circle at center, #c0c0c0, #747373);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
 
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px; /* Ajuste o espaçamento dos pontos */
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
 
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
 
-    <div class="call-to-action">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <div class="row">
-                <div class="col-md-8">
-                  <h4>Lorem ipsum dolor sit amet, consectetur adipisicing.</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis amet elite author nulla.</p>
-                </div>
-                <div class="col-lg-4 col-md-6 text-right">
-                  <a href="contact.html" class="filled-button">Contact Us</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    .logo-container img {
+      width: 500px;
+    }
+
+    .login-container {
+      background: rgb(49, 49, 49);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      position: relative;
+      width: 300px;
+    }
+
+    .input-group {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 8px;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: transparent;
+      color: rgb(0, 0, 0);
+      outline: none;
+    }
+
+    .login-btn, .register-btn {
+      display: block;
+      background: linear-gradient(135deg, #445770, #3b4c91);
+      color: white;
+      border: none;
+      padding: 14px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 25px;
+      transition: transform 0.2s ease-in-out, background 0.3s;
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-btn:hover, .register-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #0455c0, #0527be);
+    }
+
+    .register-btn {
+      background: linear-gradient(135deg, #a02a2a, #913b3b);
+    }
+
+    .register-btn:hover {
+      background: linear-gradient(135deg, #ad1313, #c21717);
+    }
+    .separator {
+    width: 2px;
+    height: 280px;
+    background: rgb(19, 19, 19);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+.separator:hover {
+    background: #e95420;
+    box-shadow: 0 0 10px rgba(233, 84, 32, 0.8);
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo-container">
+      <img src="https://shelbyauto.co.za/wp-content/uploads/2017/02/FB-Logo-Dark-1.png" alt="Logo">
     </div>
-
-    
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <p>Copyright © 2020 Company Name - <a href="#">COMPANY NAME</a></p>
-            </div>
-          </div>
-        </div>
+    <div class="separator"></div>
+    <div class="login-container">
+      <h2>LOGIN</h2>
+      <div class="input-group">
+        <input type="email" id="email" placeholder="Email" required>
       </div>
-    </footer>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <button class="login-btn" onclick="login()">LOGIN</button>
+      <button class="register-btn" onclick="register()">REGISTRAR</button>
+    </div>
+  </div>
 
+  <script>
+    // Configuração correta do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyCmzjt8A60JQvqiARuqqySxZQ3EnxQ05Tw",
+        authDomain: "shelbyauto-4c8f5.firebaseapp.com",
+        projectId: "shelbyauto-4c8f5",
+        storageBucket: "shelbyauto-4c8f5.appspot.com",
+        messagingSenderId: "118535915272",
+        appId: "1:118535915272:web:60912ed96a3d202175cebd",
+        measurementId: "G-MYQG7J4YZK"
+    };
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    // Inicializar Firebase apenas se não estiver inicializado
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
 
+    const auth = firebase.auth();
 
-    <!-- Additional Scripts -->
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/owl.js"></script>
-  </body>
+    // Função de Login
+    function login() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                console.log("Login bem-sucedido:", userCredential.user);
+                alert("Login bem-sucedido!");
+                window.location.href = "dashboard.html";
+            })
+            .catch((error) => {
+                console.error("Erro ao fazer login:", error);
+                alert("Erro ao fazer login: " + error.message);
+            });
+    }
+
+    // Função de Registro
+    function register() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                console.log("Usuário registrado:", userCredential.user);
+                alert("Registro bem-sucedido! Agora faça login.");
+            })
+            .catch((error) => {
+                console.error("Erro ao registrar:", error);
+                alert("Erro ao registrar: " + error.message);
+            });
+    }
+  </script>
+
+</body>
+
 </html>
