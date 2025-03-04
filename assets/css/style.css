@@ -1096,19 +1096,19 @@ header .navbar {
 
 
 
-/* 🔹 Estilização do menu do usuário */
+/* 🔹 Estilização do Menu de Perfil */
 .user-menu {
     position: relative;
     display: inline-block;
 }
 
-/* Perfil do usuário */
+/* 🔹 Estilização do Perfil do Usuário */
 .user-profile {
     display: flex;
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border-radius: 25px;
     background: rgba(255, 255, 255, 0.1);
     transition: background 0.3s;
@@ -1118,36 +1118,46 @@ header .navbar {
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Avatar do usuário */
+/* 🔹 Avatar */
 .user-profile img {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-/* Nome do usuário */
+/* 🔹 Nome do Usuário */
 .user-profile span {
     font-size: 14px;
     font-weight: bold;
     color: black;
 }
 
-/* Dropdown menu */
+/* 🔹 Ícone de seta */
+.user-profile .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid black;
+    transition: 0.3s;
+}
+
+/* 🔹 Estilização do Dropdown Menu */
 .dropdown-menu {
     display: none;
     position: absolute;
     top: 50px;
     right: 0;
     background: white;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 150px;
+    min-width: 180px;
     overflow: hidden;
     z-index: 1000;
 }
 
-/* Estilização dos itens do menu */
+/* 🔹 Itens do Menu */
 .dropdown-menu ul {
     list-style: none;
     padding: 0;
@@ -1155,8 +1165,14 @@ header .navbar {
 }
 
 .dropdown-menu li {
-    padding: 10px;
+    padding: 12px;
     transition: background 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu li i {
+    margin-right: 8px;
 }
 
 .dropdown-menu li:hover {
@@ -1166,29 +1182,9 @@ header .navbar {
 .dropdown-menu a {
     text-decoration: none;
     color: black;
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
-}
-
-/* 🔹 Botão de Login/Registro */
-#loginRegister {
-    display: none;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-#loginRegister a {
-    text-decoration: none;
-    color: red;
-    padding: 10px 15px;
-    border: 1px solid red;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-#loginRegister a:hover {
-    background: red;
-    color: white;
 }
 
 
