@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RuinerAuto</title>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/paineluser.css">
+    <link rel="stylesheet" href="assets/css/filter.css">
+
 </head>
 
 <body>
@@ -73,10 +75,10 @@
                 cambio: "Manual",
                 placa: "XJR-0532",
 
-                vendido: false,  // false, 🔴 Carro foi vendido
-                imagens: ["https://media.discordapp.net/attachments/1343384117135282267/1343384133883269191/image.png?ex=67bdbc38&is=67bc6ab8&hm=45ea2a6236eed5c47d086042daaf6f884939aa5617516848acdd59174e8bdafb&=&format=webp&quality=lossless",
-                    "https://media.discordapp.net/attachments/1343384117135282267/1343384214871085057/image.png?ex=67bdbc4b&is=67bc6acb&hm=acdb7ddafe68ffbe56a33e19b2e06334f7e3418d850f7d8f796d702423a71dd7&=&format=webp&quality=lossless",
-                    "https://media.discordapp.net/attachments/1343384117135282267/1343384363525472256/image.png?ex=67bdbc6f&is=67bc6aef&hm=e4af10ea6a8cbfc3a8c1d76e95268d7eb76eb979fa41806049a7e9d1acefebbd&=&format=webp&quality=lossless"
+                vendido: false,  // false = 🔴 Carro foi vendido
+                imagens: ["https://i.ibb.co/vCC5hZvY/image.png",
+                    "https://i.ibb.co/zV3zqjnJ/image.png",
+                    "https://i.ibb.co/Z6Mp9nd3/image.png"
                 ],
                 specs: [
                     "<strong>Pistão:</strong> Original",
@@ -104,89 +106,88 @@
             },
         ];
 
-        carros.forEach((carro, index) => {
-            document.write(`
-        <div class="product-item">
-            <div class="product-content">
-                <div class="carousel" id="carousel-${index}">
-                    <button class="carousel-prev" onclick="prevImage(${index})">&#10094;</button>
-                    <div class="carousel-images">
-                        ${carro.imagens.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" alt="${carro.nome}">`).join('')}
-                    </div>
-                    <button class="carousel-next" onclick="nextImage(${index})">&#10095;</button>
-                </div>
-                <div class="product-info">
-                    <hr>
-                    <h4>${carro.nome}</h4><h6>${carro.preco}</h6>
-                    <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
-                        ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
-                    </p>
-                    <hr>
-                    <p>FIPE: ${carro.fipe}</p>
-                    <p>${carro.km} | ${carro.placa} | ${carro.cambio}</p>
-                    
-                    <button class="form-btn" data-index="${index}">FAZER UMA PROPOSTA</button>
-                </div>
-                <div class="specifications">
-                    <h5>Especificações</h5>
-                    <ul>
-                        ${carro.specs.map(spec => `<li>${spec}</li>`).join('')}
-                    </ul>
-                </div>
-                <div class="documentation">
-                    <h5>Documentação</h5>
-                    <p><strong>Roda:</strong> ${carro.documentation.roda}</p>
-                    <p><strong>Turbo:</strong> ${carro.documentation.turbo}</p>
-                    <p><strong>Cor:</strong> ${carro.documentation.cor}</p>
-                    <p class="${carro.documentation.legalizado ? 'legalizado' : 'nao-legalizado'}">
-                        ${carro.documentation.legalizado ? 'Legalizado' : 'Não Legalizado'}
-                    </p>
-                </div>
-<div class="form-popup" id="form-${index}">
-    <h2>FAZER UMA PROPOSTA</h2>
-    <input type="hidden" id="carroImagem-${index}">
-<input type="hidden" id="carroNome-${index}" name="carroNome">
-<input type="hidden" id="carroPreco-${index}" name="carroPreco">
-<input type="hidden" id="carroFipe-${index}" name="carroFipe">
-<input type="hidden" id="carroKm-${index}" name="carroKm">
-<input type="hidden" id="carroCambio-${index}" name="carroCambio">
-<input type="hidden" id="carroPlaca-${index}" name="carroPlaca">
+        carros.forEach((carro, index) => { document.write(`
+<div class="product-item">
+    <div class="product-content">
+        <div class="carousel" id="carousel-${index}">
+            <button class="carousel-prev" onclick="prevImage(${index})">&#10094;</button>
+            <div class="carousel-images">
+                ${carro.imagens.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" alt="${carro.nome}">`).join('')}
+            </div>
+            <button class="carousel-next" onclick="nextImage(${index})">&#10095;</button>
+        </div>
+        <div class="product-info">
+            <hr>
+            <h4>${carro.nome}</h4>
+            <h6>${carro.preco}</h6>
+            <p class="${carro.vendido ? 'legalizado' : 'nao-legalizado'}">
+                ${carro.vendido ? 'DISPONIVEL' : 'NÃO DISPONIVEL'}
+            </p>
+            <hr>
+            <p>FIPE: ${carro.fipe}</p>
+            <p>${carro.km} | ${carro.placa} | ${carro.cambio}</p>
+
+            <button class="form-btn" data-index="${index}">FAZER UMA PROPOSTA</button>
+        </div>
+        <div class="specifications">
+            <h5>Especificações</h5>
+            <ul>
+                ${carro.specs.map(spec => `
+                <li>${spec}</li>`).join('')}
+            </ul>
+        </div>
+        <div class="documentation">
+            <h5>Documentação</h5>
+            <p><strong>Roda:</strong> ${carro.documentation.roda}</p>
+            <p><strong>Turbo:</strong> ${carro.documentation.turbo}</p>
+            <p><strong>Cor:</strong> ${carro.documentation.cor}</p>
+            <p class="${carro.documentation.legalizado ? 'legalizado' : 'nao-legalizado'}">
+                ${carro.documentation.legalizado ? 'Legalizado' : 'Não Legalizado'}
+            </p>
+        </div>
+        <div class="form-popup" id="form-${index}">
+            <h2>FAZER UMA PROPOSTA</h2>
+            <input type="hidden" id="carroImagem-${index}">
+            <input type="hidden" id="carroNome-${index}" name="carroNome">
+            <input type="hidden" id="carroPreco-${index}" name="carroPreco">
+            <input type="hidden" id="carroFipe-${index}" name="carroFipe">
+            <input type="hidden" id="carroKm-${index}" name="carroKm">
+            <input type="hidden" id="carroCambio-${index}" name="carroCambio">
+            <input type="hidden" id="carroPlaca-${index}" name="carroPlaca">
 
 
-    <input type="text" id="nome-${index}" class="popup-input" placeholder="Nome In-Game">
-    <input type="text" id="discord-${index}" class="popup-input" placeholder="Discord">
-    <input type="text" id="celular-${index}" class="popup-input" placeholder="Celular In-Game">
-    <textarea id="comentario-${index}" class="popup-textarea" placeholder="Escreva aqui a sua proposta..."></textarea>
-    
-<div class="upload-container">
-    <label for="fotoCarro-${index}" class="upload-label">
-        📸 Enviar Foto do Veículo:
-    </label>
-    <input type="file" id="fotoCarro-${index}" class="upload-input" accept="image/*">
-    <span id="file-name-${index}" class="file-name">Nenhum arquivo escolhido</span>
-</div>
+            <input type="text" id="nome-${index}" class="popup-input" placeholder="Nome In-Game">
+            <input type="text" id="discord-${index}" class="popup-input" placeholder="Discord">
+            <input type="text" id="celular-${index}" class="popup-input" placeholder="Celular In-Game">
+            <textarea id="comentario-${index}" class="popup-textarea" placeholder="Escreva aqui a sua proposta..."></textarea>
 
-    <div class="popup-btn-container">
-        <button class="popup-btn submit" onclick="enviarFormulario(${index})">Enviar</button>
-        <button class="popup-btn close" onclick="closeForm(${index})">Fechar</button>
-    </div>
-</div>
+            <div class="upload-container">
+                <label for="fotoCarro-${index}" class="upload-label">
+                    📸 Enviar Foto do Veículo:
+                </label>
+                <input type="file" id="fotoCarro-${index}" class="upload-input" accept="image/*">
+                <span id="file-name-${index}" class="file-name">Nenhum arquivo escolhido</span>
+            </div>
 
-
+            <div class="popup-btn-container">
+                <button class="popup-btn submit" onclick="enviarFormulario(${index})">Enviar</button>
+                <button class="popup-btn close" onclick="closeForm(${index})">Fechar</button>
             </div>
         </div>
-    `);
-        });
-    </script>
+
+
     </div>
-    </div>
+</div>
+`); });
+</script>
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="inner-content">
-                        <p2>COPYRIGHT © 2025 SHELBY AUTO ( BRASILIA RP ) SERVER 2 - DESENVOLVIDO BY <a href="#">Shelby
-                                Enterprises L.L.C</a></p2>
+                        <p>COPYRIGHT © 2025 SHELBY AUTO ( BRASILIA RP ) SERVER 2 - DESENVOLVIDO BY 
+                            <a href="#">Shelby Enterprises L.L.C</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -313,119 +314,6 @@ function closeForm(index) {
 
 
         // Estilos CSS corrigidos
-        document.head.insertAdjacentHTML("beforeend", `
-<style>
-
-/* 🔹 Melhorando a posição do formulário */
-
-
-/* 🔹 Esconde o formulário ao carregar a página */
-.form-popup {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    left: 105%; /* Mantém o formulário ao lado do carro */
-    margin-left: -110px;
-    margin-top: -170px;
-background: linear-gradient(269deg, #efeded, #efeded);
-    width: 400px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    animation: fadeIn 0.3s ease-in-out;
-    border: 2px solid #ddd;
-    opacity: 0; /* 🔹 Inicia invisível */
-    transform: scale(0.9); /* 🔹 Efeito de zoom */
-    transition: all 0.3s ease-in-out;
-}
-
-/* 🔹 Quando for exibido, faz a animação */
-.form-popup.show {
-    display: flex;
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* 🔹 Mantém o título azul gradiente */
-.form-popup h2 {
-               background: linear-gradient(269deg, #efeded, #efeded);
-    color: #000000;
-    font-size: 18px;
-    padding: 15px;
-    border-radius: 10px 10px 0 0;
-    margin: -25px -25px 20px -25px;
-    text-align: center;
-    width: calc(100% + 50px);
-}
-
-/* 🔹 Inputs */
-.popup-input {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-/* 🔹 Botões lado a lado */
-.popup-btn-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-/* 🔹 Caixa de Comentário Opcional */
-.popup-textarea {
-    width: 100%;
-    height: 100px;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    resize: none;
-}
-
-/* 🔹 Botão Enviar */
-.popup-btn.submit {
-    flex: 1;
-    background: #ffffff;
-    color: #141313;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    transition: all 0.3s ease-in-out;
-    width: 170px;
-}
-
-.popup-btn.submit:hover {
-    background: #138496;
-}
-
-/* 🔹 Botão Fechar */
-.popup-btn.close {
-    flex: 1;
-    background: #000000c7;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    width: 170px;
-}
-
-
-`);
 
     </script>
 
@@ -546,6 +434,27 @@ ${fotoURL ? `🖼️ **Foto do Veículo:** [Clique para ver](${fotoURL})\n` : ""
         document.getElementById("userName").textContent = user.name;
         document.getElementById("userAvatar").src = user.avatar;
     });
+
+    function prevImage(index) {
+    const carouselImages = document.getElementById(`carousel-${index}`).querySelectorAll('.carousel-images img');
+    const activeIndex = Array.from(carouselImages).findIndex(img => img.classList.contains('active'));
+    const prevIndex = (activeIndex - 1 + carouselImages.length) % carouselImages.length;
+
+    carouselImages[activeIndex].classList.remove('active');
+    carouselImages[prevIndex].classList.add('active');
+}
+
+function nextImage(index) {
+    const carouselImages = document.getElementById(`carousel-${index}`).querySelectorAll('.carousel-images img');
+    const activeIndex = Array.from(carouselImages).findIndex(img => img.classList.contains('active'));
+    const nextIndex = (activeIndex + 1) % carouselImages.length;
+
+    carouselImages[activeIndex].classList.remove('active');
+    carouselImages[nextIndex].classList.add('active');
+}
+
+
+
 </script>
 
     <!-- 🔹 Importando o Firebase e Script Global -->

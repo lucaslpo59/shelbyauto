@@ -16,10 +16,12 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
+    <link rel="stylesheet" href="assets/css/paineluser.css">
     <link rel="stylesheet" href="assets/css/owl.css">
+
+    <script type="module" src="assets/js/profile.js"></script>
   </head>
-  
 <body>
     <header class="">
         <nav class="navbar navbar-expand-lg">
@@ -30,12 +32,15 @@
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="user-menu" id="userMenu">
                     <div class="user-profile" onclick="toggleMenu()">
                         <img src="https://i.pravatar.cc/50" id="userAvatar" alt="Avatar">
                         <span id="userName">Usuário</span>
                         <i class="arrow-down"></i> <!-- Ícone de seta -->
                     </div>
+
+                    
                     <div class="dropdown-menu" id="dropdownMenu">
                         <ul>
                             <li><a href="profile.html"><i class="fas fa-user"></i> Meu Perfil</a></li>
@@ -46,12 +51,15 @@
                             <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i>Voltar</a></li>
                         </ul>
                     </div>
+
+                    
                 </div>
                 
                 <!-- Link para login/registro -->
                 <div id="loginRegister" style="display: none;">
                     <a href="index.html">Fazer Login / Registrar</a>
                 </div>
+                
                 
                   <!--  <li class="nav-item"><a class="nav-link" href="contact.html">CONTATO</a></li> -->
               <!--   <li class=""><a class="login-link" href="login.html">ENTRAR / REGISTRAR</a></li> -->
@@ -61,15 +69,22 @@
         </nav>
       </header>
 
-    <div class="profile-container">
+      <div class="profile-container">
         <h2>Meu Perfil</h2>
         <div class="profile-info">
             <img src="https://i.pravatar.cc/100" id="profileAvatar" alt="Foto de Perfil">
-            <p><strong>Nome:</strong> <span id="profileName">Usuário</span></p>
+            <p><strong>Nome:</strong> <span id="profileName">Usuário</span>
+                <button onclick="editarCampo('displayName')">✎</button></p>
+            <p><strong>Discord:</strong> <span id="profileDiscord">Não informado</span>
+                <button onclick="editarCampo('discord')">✎</button></p>
+            <p><strong>Celular In-Game:</strong> <span id="profileCelular">Não informado</span>
+                <button onclick="editarCampo('celular')">✎</button></p>
             <p><strong>Email:</strong> <span id="profileEmail">email@email.com</span></p>
         </div>
-        <button id="editProfile">Editar Perfil</button>
+        <div>
+        <button id="editPhoto">🖊️ Alterar Foto</button>
     </div>
+        
 
     <script type="module" src="assets/js/profile.js"></script>
 </body>
@@ -95,5 +110,7 @@
             }
         });
     </script>
+
+
     
 </html>

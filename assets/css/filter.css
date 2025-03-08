@@ -1,0 +1,734 @@
+/* 🟢 CSS DO HTML filter.html */
+body {
+    background-color: #1e1e1e;
+	line-height: 1.2;
+}
+
+header {
+    margin-bottom: 50px; /* Ajuste o valor conforme necessário */
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 10px;
+	background-color: #f80000;
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	-o-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+}
+
+
+.navbar {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
+	background-color: #fff;
+}
+
+.products {
+	margin-top: 120px;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.products-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	/* Mantém os carros centralizados */
+	align-items: center;
+}
+
+.product-item {
+    display: flex;
+	align-items: flex-start; /* Correção essencial */	
+    background: #000000;
+    width: 1200px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    cursor: pointer;
+    color: #fff8f8;
+    position: relative;
+    margin-left: 40px;
+}
+
+@keyframes border-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.product-item:hover::before {
+    animation: border-animation 2s linear infinite;
+}
+
+.product-item::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+	background: linear-gradient(45deg, #000000, #ff4700, #000000, #000000);
+    background-size: 200% 200%;
+    z-index: -1;
+    border-radius: 10px;
+    animation: border-animation 3s linear infinite;
+}
+
+.product-item::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 3px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background: #000;
+    border-radius: 5px;
+    z-index: -1;
+}
+
+.product-item:hover {
+	transform: scale(1.05);
+}
+
+.product-info, .specifications, .documentation {
+    flex: 220px; /* Faz os elementos ocuparem o espaço igualmente */
+    min-width: 220px;
+}
+
+
+.specifications,
+.documentation {
+	background: #f8f9fa41;
+	padding: 10px;
+	border-radius: 10px;
+	flex-grow: 1;
+	max-width: 300px;
+}
+
+.specifications h5,
+.documentation h5 {
+	margin-bottom: 5px;
+}
+
+.product-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px; /* Dá um espaço entre os elementos */
+}
+
+.legalizado {
+	color: green;
+	font-weight: bold;
+}
+
+.nao-legalizado {
+	color: red;
+	font-weight: bold;
+}
+
+.nao-vendido {
+	color: green;
+	font-weight: bold;
+}
+
+.vendido {
+	color: red;
+	font-weight: bold;
+}
+
+
+.carousel {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	width: 500px;
+	height: 500px;
+	overflow: hidden;
+	border-radius: 8px;
+}
+
+.carousel-images {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.carousel img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: absolute;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.carousel img.active {
+	opacity: 1;
+}
+
+.carousel-prev,
+.carousel-next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: none;
+	font-size: 18px;
+	padding: 5px 10px;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.carousel-prev {
+	left: 5px;
+}
+
+.carousel-next {
+	right: 5px;
+}
+
+
+footer {
+	background-color: #1a1a1a;
+	color: #ffffff;
+	padding: 11px 0;
+	text-align: center;
+	font-size: 14px;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	font-weight: bold;
+	/* Deixa todo o texto em negrito */
+}
+
+footer .inner-content {
+	padding: 34px 0;
+	color: #ffffff;
+	font-weight: bold;
+	/* Texto em negrito */
+}
+
+footer a {
+	color: #ff0000;
+	text-decoration: none;
+	font-weight: bold;
+	transition: color 0.3s;
+}
+
+.p2 {
+	margin-bottom: 0px;
+	font-size: 14px;
+	font-weight: 300;
+	color: #ffffff;
+	line-height: 24px;
+	font-weight: bold;
+	/* Deixa todo o texto em negrito */
+	font-weight: bold;
+	/* Texto em negrito */
+}
+
+footer a:hover {
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+hr {
+    border: none;
+    width: 210px;
+    height: 2px;
+    background-color: #ff1f1f;
+    margin: 0px 0;
+}
+
+.form-popup.show {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+    display: flex;
+    left: 1328px;
+    top: 163.75px;
+}
+
+/* 🔹 Botão moderno */
+.form-btn {
+    background: linear-gradient(90deg, #ff6900, #000000);
+    color: rgb(255 255 255);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    text-align: center;
+}
+
+/* 🔹 Efeito ao passar o mouse */
+.form-btn:hover {
+	background: linear-gradient(90deg, #000000, #ff6900);
+	transform: scale(1.05);
+}
+
+.upload-container {
+display: flex;
+align-items: center;
+gap: 10px;
+background: #f8f9fa;
+padding: 12px;
+border-radius: 10px;
+border: 2px solid #ccc;
+width: 100%;
+max-width: 400px;
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.upload-label {
+display: flex;
+align-items: center;
+gap: 8px;
+background: #007bff;
+color: white;
+padding: 10px 15px;
+border-radius: 8px;
+cursor: pointer;
+font-weight: bold;
+transition: background 0.3s ease;
+font-size: 14px;
+}
+
+.upload-label:hover {
+background: #0056b3;
+}
+
+.upload-label i {
+font-size: 18px;
+}
+
+.upload-input {
+display: none;
+}
+
+#file-name {
+font-size: 14px;
+color: #333;
+font-weight: bold;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+max-width: 200px;
+}
+
+
+
+/* Header Style */
+.navbar {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
+	background-color: #fff;
+}
+
+header {
+	position: fixed;
+    margin-bottom: 20px;
+    top: 88px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: #f00e0e;
+    z-index: 99999;
+}
+
+header .navbar {
+	padding: 17px 0px;
+}
+.background-header .navbar {
+	padding: 17px 0px;
+}
+.background-header {
+	top: 0;
+	position: fixed;
+	background-color: #fff!important;
+	box-shadow: 0px 1px 10px rgba(255, 253, 253, 0.1);
+}
+.background-header .navbar-brand h2 {
+	color: #121212!important;
+}
+.background-header .navbar-nav a.nav-link {
+	color: #1e1e1e!important;
+}
+.background-header .navbar-nav .nav-link:hover,
+.background-header .navbar-nav .active>.nav-link,
+.background-header .navbar-nav .nav-link.active,
+.background-header .navbar-nav .nav-link.show,
+.background-header .navbar-nav .show>.nav-link {
+	color: #f33f3f!important;
+}
+.navbar .navbar-brand {
+	float: 	left;
+	margin-top: -12px;
+	outline: none;
+}
+.navbar .navbar-brand h2 {
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 24px;
+	font-weight: 700;
+	-webkit-transition: all .3s ease 0s;
+    -moz-transition: all .3s ease 0s;
+    -o-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+}
+.navbar .navbar-brand h2 em {
+	font-style: normal;
+	color: #f33f3f;
+}
+#navbarResponsive {
+	z-index: 999;
+}
+.navbar-collapse {
+	text-align: center;
+}
+.navbar .navbar-nav .nav-item {
+	margin: 0px 15px;
+}
+.navbar .navbar-nav a.nav-link {
+	text-transform: capitalize;
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	color: #050505;
+	transition: all 0.5s;
+	margin-top: 5px;
+}
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .active>.nav-link,
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link.show,
+.navbar .navbar-nav .show>.nav-link {
+	color: #161212;
+	padding-bottom: 25px;
+	border-bottom: 3px solid #f33f3f;
+}
+.navbar .navbar-toggler-icon {
+	background-image: none;
+}
+.navbar .navbar-toggler {
+	border-color: #242222;
+	background-color: #1d1a1a;	
+	height: 36px;
+	outline: none;
+	border-radius: 0px;
+	position: absolute;
+	right: 30px;
+	top: 20px;
+}
+.navbar .navbar-toggler-icon:after {
+	content: '\f0c9';
+	color: #f33f3f;
+	font-size: 18px;
+	line-height: 26px;
+	font-family: 'FontAwesome';
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 11px 0;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    font-weight: bold;
+}
+
+
+footer a {
+    color: red !important;  /* 🔹 Garante que a cor seja aplicada */
+    text-decoration: none;  /* 🔹 Remove sublinhado (opcional) */
+    font-weight: bold;      /* 🔹 Deixa em negrito (opcional) */
+}
+
+footer a:hover {
+    color: #ff4d4d !important;  /* 🔹 Muda para um vermelho mais claro ao passar o mouse */
+}
+
+/* 🔹 Caso tenha alguma classe específica dentro do footer */
+footer .inner-content a {
+    color: red !important;
+}
+
+
+
+/* 🔹 Melhorando a posição do formulário */
+
+
+/* 🔹 Esconde o formulário ao carregar a página */
+.form-popup {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 105%; /* Mantém o formulário ao lado do carro */
+    margin-left: -70px;
+    margin-top: -110px;
+    background: linear-gradient(269deg, #efeded, #efeded);
+    width: 450px;
+    height: 520px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+    border: 2px solid #ddd;
+    opacity: 0; /* 🔹 Inicia invisível */
+    transform: scale(0.9); /* 🔹 Efeito de zoom */
+    transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Quando for exibido, faz a animação */
+.form-popup.show {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+    display: flex;
+    /* left: 1228px; */
+    /* top: 163.75px;*/
+}
+
+/* 🔹 Mantém o título azul gradiente */
+.form-popup h2 {
+               background: linear-gradient(269deg, #efeded, #efeded);
+    color: #000000;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    margin: -25px -25px 20px -25px;
+    text-align: center;
+    width: calc(100% + 50px);
+}
+
+/* 🔹 Inputs */
+.popup-input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* 🔹 Botões lado a lado */
+.popup-btn-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* 🔹 Caixa de Comentário Opcional */
+.popup-textarea {
+    width: 100%;
+    height: 100px;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: none;
+}
+
+/* 🔹 Botão Enviar */
+.popup-btn.submit {
+    flex: 1;
+    background: #ffffff;
+    color: #141313;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    width: 170px;
+}
+
+.popup-btn.submit:hover {
+    background: #138496;
+}
+
+/* 🔹 Botão Fechar */
+.popup-btn.close {
+    flex: 1;
+    background: #000000c7;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    width: 170px;
+}
+/* 🔹 Ajuste do espaçamento e organização dos textos */
+.specifications ul {
+    padding-left: 10px; /* Reduz o espaçamento interno */
+    margin: 0; /* Remove margens desnecessárias */
+}
+
+.specifications ul li {
+    margin-bottom: 3px; /* 🔹 Reduz o espaço entre os itens */
+    line-height: 1.2; /* 🔹 Diminui a altura das linhas */
+    font-weight: normal; /* 🔹 Mantém a leitura equilibrada */
+}
+
+.documentation {
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    max-width: 280px;
+}
+
+.documentation h5 {
+    margin-bottom: 5px;
+}
+
+.documentation p, .documentation ul, .documentation li {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* 🔹 Garante que os textos coloridos fiquem em negrito */
+.legalizado,
+.legalizado strong,
+.nao-legalizado,
+.nao-legalizado strong {
+    font-weight: bold !important; /* 🔹 Negrito garantido */
+}
+
+/* 🔹 Ajusta a cor corretamente */
+.legalizado {
+    color: green !important;
+}
+
+.nao-legalizado {
+    color: red !important;
+}
+
+/* 🔹 Melhorando a organização visual da documentação */
+.documentation {
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1); /* 🔹 Fundo mais sutil */
+    max-width: 280px; /* 🔹 Define um tamanho adequado */
+}
+
+/* 🔹 Melhorando a organização visual das especificações */
+.specifications {
+    padding: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1); /* 🔹 Fundo mais sutil */
+    max-width: 400px; /* 🔹 Define um tamanho adequado */
+}
+
+
+.btn-card {
+	padding: 8px;
+    width: 100%;
+    border: 2px solid;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    background: #ffffff00;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    margin-top: 0px;
+}
+  }
+  
+  /* Estilos para diferentes cores */
+  .btn-card.red { 
+	  border-color: red; 
+	  color: red;
+  }
+  
+  .btn-card.red:hover { 
+	  background: red; 
+	  color: white;
+  }
+  
+  .btn-card.blue { 
+	  border-color: rgb(150, 150, 252); 
+	  color: rgb(150, 150, 252); 
+  }
+  
+  .btn-card.blue:hover { 
+	  background: rgb(88, 88, 189); 
+	  color: white;
+  }
+  
+  .btn-card.green { 
+	  border-color: green; 
+	  color: green;
+  }
+  
+  .btn-card.green:hover { 
+	  background: green; 
+	  color: white;
+  }
+  
+  .btn-card.orange { 
+	  border-color: orange; 
+	  color: orange;
+  }
+  
+  .btn-card.orange:hover { 
+	  background: orange; 
+	  color: white;
+  }
+  
+  .btn-card.black { 
+	  border-color: black; 
+	  color: black;
+  }
+  
+  .btn-card.black:hover { 
+	  background: black; 
+	  color: white;
+  }
+  
+  .btn-card.gray { 
+	border-color: #ffffff;
+	color: gray;
+  }
+  
+  .btn-card.gray:hover { 
+	  background: gray; 
+	  color: white;
+  }
