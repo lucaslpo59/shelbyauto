@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/paineluser.css">
     <link rel="stylesheet" href="assets/css/filter.css">
-
 </head>
 
+
 <body>
+    <script type="module" src="assets/js/auth.js"></script>
+<script type="module" src="assets/js/profile.js"></script>
     <header class="">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
@@ -35,17 +37,20 @@
 
                 <!-- Menu do Usuário -->
                 <div class="user-menu" id="userMenu">
-                    <div class="user-profile" onclick="toggleMenu()" style="display: none;">
-                        <img src="https://i.pravatar.cc/50" id="userAvatar" alt="Avatar">
+                    <div class="user-profile" onclick="toggleMenu()">
+                        <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png" id="userAvatar" alt="Avatar">
                         <span id="userName">Usuário</span>
+                        <i class="arrow-down"></i> <!-- Ícone de seta -->
                     </div>
+
+                    
                     <div class="dropdown-menu" id="dropdownMenu">
                         <ul>
-                            <li><a href="profile.html"><i class="fa-solid fa-user"></i> Meu Perfil</a></li>
-                            <li><a href="settings.html"><i class="fa-solid fa-cog"></i> Configurações</a></li>
-                            <li><a href="#" id="logout"><i class="fa-solid fa-sign-out-alt"></i> Sair</a></li>
+                            <li><a href="profile.html"><i class="fas fa-user"></i> Meu Perfil</a></li>
+                            <li><a href="settings.html"><i class="fas fa-cog"></i> Configurações</a></li>
+                            <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                         </ul>
-                    </div>
+                    </div>   
                 </div>
 
                 <!-- Link para login/registro -->
@@ -406,7 +411,6 @@ ${fotoURL ? `🖼️ **Foto do Veículo:** [Clique para ver](${fotoURL})\n` : ""
 }
 </script>
 
-
 <script>
     function toggleMenu() {
         let menu = document.getElementById("dropdownMenu");
@@ -423,26 +427,6 @@ ${fotoURL ? `🖼️ **Foto do Veículo:** [Clique para ver](${fotoURL})\n` : ""
         }
     });
 
-    // Simulando um usuário logado (pode vir de API, LocalStorage ou Backend)
-    document.addEventListener("DOMContentLoaded", function () {
-        let user = {
-            name: "Lucas",
-            avatar: "https://i.pravatar.cc/50" // Substitua pela URL do avatar real
-        };
-
-        // Atualiza os dados do usuário
-        document.getElementById("userName").textContent = user.name;
-        document.getElementById("userAvatar").src = user.avatar;
-    });
-
-    function prevImage(index) {
-    const carouselImages = document.getElementById(`carousel-${index}`).querySelectorAll('.carousel-images img');
-    const activeIndex = Array.from(carouselImages).findIndex(img => img.classList.contains('active'));
-    const prevIndex = (activeIndex - 1 + carouselImages.length) % carouselImages.length;
-
-    carouselImages[activeIndex].classList.remove('active');
-    carouselImages[prevIndex].classList.add('active');
-}
 
 function nextImage(index) {
     const carouselImages = document.getElementById(`carousel-${index}`).querySelectorAll('.carousel-images img');
@@ -453,12 +437,11 @@ function nextImage(index) {
     carouselImages[nextIndex].classList.add('active');
 }
 
-
-
 </script>
 
     <!-- 🔹 Importando o Firebase e Script Global -->
     <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/profile.js"></script>
 
     <!-- 🔹 Script para abrir/fechar o menu do usuário -->
     <script>
@@ -477,6 +460,9 @@ function nextImage(index) {
             }
         });
     </script>
+
+
+<script type="module" src="assets/js/filter.js"></script>
 </body>
 
 </html>

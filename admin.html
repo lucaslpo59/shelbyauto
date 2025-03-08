@@ -1,71 +1,198 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Gerenciamento - Shelby Auto</title>
+    <title>Dashboard Neon</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .container { max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
-        input, button { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+        body {
+            background: linear-gradient(135deg, #090c1b, #1a1d36);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: #0c1022;
+            padding: 20px;
+            min-height: 100vh;
+            box-shadow: 2px 0 5px rgba(255, 255, 255, 0.1);
+        }
+        .sidebar h2 {
+            text-align: center;
+            color: #ff005c;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+            color: #8f9bf4;
+        }
+        .sidebar ul li:hover {
+            background: #1c1f4a;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #131736;
+            padding: 15px;
+            border-bottom: 2px solid #ff005c;
+            box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.1);
+        }
+        .header-icons span {
+            margin-left: 15px;
+            cursor: pointer;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: #131736;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(255, 0, 92, 0.4);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        button {
+            background: linear-gradient(90deg, #ff005c, #ff4d4d);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #ff4d4d, #ff005c);
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Adicionar Novo Carro</h2>
-        <input type="text" id="carroNome" placeholder="Nome do Carro">
-        <input type="text" id="carroPreco" placeholder="Preço">
-        <input type="text" id="carroFipe" placeholder="FIPE">
-        <input type="text" id="carroKm" placeholder="KM">
-        <input type="text" id="carroCambio" placeholder="Câmbio">
-        <input type="text" id="carroPlaca" placeholder="Placa">
-        <input type="file" id="carroImagem" accept="image/*">
-        <button onclick="salvarCarro()">Salvar Carro</button>
-        <h3>Carros Cadastrados</h3>
-        <ul id="listaCarros"></ul>
+    <div class="sidebar">
+        <h2>LOGO</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Relatórios</li>
+            <li>Configurações</li>
+            <li>Perfil</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <div>Dashboard</div>
+            <div class="header-icons">
+                <span>🔍</span>
+                <span>🔔</span>
+                <span>👤</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="card">
+                <h2>Métrica Atual</h2>
+                <p id="metric-value" style="font-size: 2em; font-weight: bold; color: #ff005c;">51%</p>
+                <button onclick="increaseMetric()">Aumentar</button>
+            </div>
+            <div class="card">
+                <h2>Indicador Semicircular</h2>
+                <canvas id="progressChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Gráfico de Linha</h2>
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Gráfico de Barras</h2>
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Gráfico de Pizza</h2>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
     </div>
 
     <script>
-        function salvarCarro() {
-            let nome = document.getElementById("carroNome").value;
-            let preco = document.getElementById("carroPreco").value;
-            let fipe = document.getElementById("carroFipe").value;
-            let km = document.getElementById("carroKm").value;
-            let cambio = document.getElementById("carroCambio").value;
-            let placa = document.getElementById("carroPlaca").value;
-            let imagemInput = document.getElementById("carroImagem");
-            let imagemURL = imagemInput.files.length > 0 ? URL.createObjectURL(imagemInput.files[0]) : "";
+        let metric = 51;
+        function increaseMetric() {
+            metric++;
+            document.getElementById("metric-value").innerText = metric + "%";
+        }
 
-            if (!nome || !preco || !fipe || !km || !cambio || !placa) {
-                alert("Por favor, preencha todos os campos!");
-                return;
+        const progressCtx = document.getElementById('progressChart').getContext('2d');
+        new Chart(progressCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Progresso', 'Restante'],
+                datasets: [{
+                    data: [metric, 100 - metric],
+                    backgroundColor: ['#ff005c', '#444'],
+                    cutout: '80%'
+                }]
+            },
+            options: { rotation: -90, circumference: 180 }
+        });
+
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Valores',
+                    data: [30, 45, 60, 80, 100],
+                    borderColor: '#ff005c',
+                    fill: false
+                }]
             }
+        });
 
-            let carro = { nome, preco, fipe, km, cambio, placa, imagem: imagemURL };
-            let carros = JSON.parse(localStorage.getItem("carros")) || [];
-            carros.push(carro);
-            localStorage.setItem("carros", JSON.stringify(carros));
-            alert("Carro salvo com sucesso!");
-            carregarCarros();
-        }
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Valores',
+                    data: [30, 45, 60, 80, 100],
+                    backgroundColor: '#ff005c'
+                }]
+            }
+        });
 
-        function carregarCarros() {
-            let carros = JSON.parse(localStorage.getItem("carros")) || [];
-            let lista = document.getElementById("listaCarros");
-            lista.innerHTML = "";
-            carros.forEach((carro, index) => {
-                lista.innerHTML += `<li>${carro.nome} - ${carro.preco} <button onclick="excluirCarro(${index})">Excluir</button></li>`;
-            });
-        }
-
-        function excluirCarro(index) {
-            let carros = JSON.parse(localStorage.getItem("carros")) || [];
-            carros.splice(index, 1);
-            localStorage.setItem("carros", JSON.stringify(carros));
-            carregarCarros();
-        }
-
-        carregarCarros();
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Grupo A', 'Grupo B', 'Grupo C', 'Grupo D'],
+                datasets: [{
+                    data: [400, 300, 300, 200],
+                    backgroundColor: ['#ff005c', '#ff4d4d', '#ff9f43', '#1e90ff']
+                }]
+            }
+        });
     </script>
 </body>
 </html>

@@ -35,7 +35,7 @@
 
                 <div class="user-menu" id="userMenu">
                     <div class="user-profile" onclick="toggleMenu()">
-                        <img src="https://i.pravatar.cc/50" id="userAvatar" alt="Avatar">
+                        <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png" id="userAvatar" alt="Avatar">
                         <span id="userName">Usuário</span>
                         <i class="arrow-down"></i> <!-- Ícone de seta -->
                     </div>
@@ -72,7 +72,7 @@
       <div class="profile-container">
         <h2>Meu Perfil</h2>
         <div class="profile-info">
-            <img src="https://i.pravatar.cc/100" id="profileAvatar" alt="Foto de Perfil">
+            <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png" id="profileAvatar" alt="Foto de Perfil">
             <p><strong>Nome:</strong> <span id="profileName">Usuário</span>
                 <button onclick="editarCampo('displayName')">✎</button></p>
             <p><strong>Discord:</strong> <span id="profileDiscord">Não informado</span>
@@ -81,8 +81,17 @@
                 <button onclick="editarCampo('celular')">✎</button></p>
             <p><strong>Email:</strong> <span id="profileEmail">email@email.com</span></p>
         </div>
-        <div>
-        <button id="editPhoto">🖊️ Alterar Foto</button>
+        <div class="photo-container">
+            <p class="photo-instruction">
+                Para mudar a foto, envie para 
+                <a href="https://imgbb.com/" target="_blank">ImgBB</a> 
+                ou outro serviço e cole a URL abaixo.
+            </p>
+            <button id="editPhoto" class="photo-btn">
+                <i class="fas fa-camera"></i> Alterar Foto
+            </button>
+        </div>   
+        <div>        
     </div>
         
 

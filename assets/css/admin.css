@@ -1,0 +1,117 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a1a2e;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Container do Dashboard */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(to bottom, #3a0ca3, #7209b7);
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar .profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar .profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+.sidebar .profile h3 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar nav ul li {
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.sidebar nav ul li:hover, .sidebar nav ul .active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Conteúdo do Dashboard */
+.dashboard-content {
+    flex: 1;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.search-bar {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    color: #fff;
+    width: 50%;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    flex: 1;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+}
+
+.charts {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+canvas {
+    width: 45% !important;
+    height: 200px !important;
+}

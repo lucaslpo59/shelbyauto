@@ -30,103 +30,91 @@ onAuthStateChanged(auth, async (user) => {
     if (user) {
         console.log("✅ Usuário autenticado:", user.uid);
 
-        // Carregar os dados do usuário do Firestore
+        // Referência ao Firestore
         const userRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(userRef);
 
-        // Atualiza os elementos HTML com as informações do usuário
-        document.getElementById("profileName").textContent = user.displayName || "Usuário";
+        let displayName = user.displayName || "Usuário"; // Nome padrão caso não encontre
+
+        if (docSnap.exists()) {
+            const userData = docSnap.data();
+
+            // Se houver um nome salvo no Firestore, usa ele
+            if (userData.displayName) {
+                displayName = userData.displayName;
+            } else {
+                console.warn("⚠️ Nome não encontrado no Firestore. Usando o nome do Firebase Auth.");
+            }
+
+            // Atualiza o avatar se houver no Firestore
+            if (userData.photoURL) {
+                document.getElementById("profileAvatar").src = userData.photoURL + "?t=" + new Date().getTime();
+                document.getElementById("userAvatar").src = userData.photoURL + "?t=" + new Date().getTime();
+            } else {
+                document.getElementById("profileAvatar").src = user.photoURL || "https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png";
+                document.getElementById("userAvatar").src = user.photoURL || "https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png";
+            }
+
+            // Atualiza outros dados (Discord, Celular)
+            document.getElementById("profileDiscord").textContent = userData.discord || "Não informado";
+            document.getElementById("profileCelular").textContent = userData.celular || "Não informado";
+        } else {
+            console.warn("⚠️ Nenhum documento encontrado no Firestore para este usuário.");
+        }
+
+        // 🔹 Atualiza os elementos corretamente
+        const profileNameElement = document.getElementById("profileName");
+        if (profileNameElement) {
+            profileNameElement.textContent = displayName;
+        }
+
+        const userNameElement = document.getElementById("userName");
+        if (userNameElement) {
+            userNameElement.textContent = displayName;
+        }
+
         document.getElementById("profileEmail").textContent = user.email;
 
-        if (docSnap.exists() && docSnap.data().photoURL) {
-            document.getElementById("profileAvatar").src = docSnap.data().photoURL + "?t=" + new Date().getTime();
-        } else {
-            document.getElementById("profileAvatar").src = user.photoURL || "https://i.pravatar.cc/100";
-        }
     } else {
         console.error("❌ Nenhum usuário autenticado. Redirecionando...");
-        window.location.href = "login.html"; // 🔹 Redireciona para login
+        window.location.href = "index.html"; // 🔹 Redireciona para login
     }
 });
 
 
 
 // 🔹 Função para editar a foto de perfil e salvar no Firebase Storage
-function editarFotoPerfil() {
-    const newPhotoURL = prompt("Digite a URL da nova foto:");
+document.getElementById("editPhoto").addEventListener("click", async () => {
+    const newPhotoURL = prompt("Cole o link da nova foto de perfil:");
 
-    if (auth.currentUser && newPhotoURL) {
-        updateProfile(auth.currentUser, {
-            photoURL: newPhotoURL
-        }).then(() => {
+    if (newPhotoURL && auth.currentUser) {
+        try {
+            await updateProfile(auth.currentUser, { photoURL: newPhotoURL });
+
             document.getElementById("profileAvatar").src = newPhotoURL;
-            alert("Foto atualizada com sucesso!");
-        }).catch((error) => {
-            console.error("Erro ao atualizar foto:", error);
-            alert("Erro ao atualizar a foto.");
-        });
-    }
-}
 
+            // Salva no Firestore
+            const userId = auth.currentUser.uid;
+            await setDoc(doc(db, "users", userId), { photoURL: newPhotoURL }, { merge: true });
 
-
-// 🔹 Função para atualizar a foto do perfil
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("📌 DOM completamente carregado");
-
-    const editPhotoBtn = document.getElementById("editPhoto");
-    
-    if (!editPhotoBtn) {
-        console.error("❌ Botão de edição de foto não encontrado.");
-        return;
-    }
-
-    console.log("✅ Botão de edição de foto encontrado!");
-
-    editPhotoBtn.addEventListener("click", async () => {
-        console.log("🖊️ Alterar foto clicado!");
-
-        if (!auth.currentUser) {
-            alert("Erro: usuário não autenticado.");
-            return;
+            alert("Foto de perfil atualizada com sucesso!");
+        } catch (error) {
+            console.error("Erro ao atualizar a foto:", error);
+            alert("Erro ao atualizar a foto de perfil.");
         }
+    }
+});
 
-        const fileInput = document.createElement("input");
-        fileInput.type = "file";
-        fileInput.accept = "image/*";
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userRef);
 
-        fileInput.addEventListener("change", async (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                try {
-                    console.log("📤 Enviando imagem para o Firebase Storage...");
-                    
-                    const userId = auth.currentUser.uid;
-                    const storageRef = ref(storage, `profile_pictures/${userId}`);
-
-                    await uploadBytes(storageRef, file);
-                    const photoURL = await getDownloadURL(storageRef);
-
-                    console.log("✅ Upload concluído! Nova URL da foto:", photoURL);
-
-                    // 🔹 Atualiza o Auth e o Firestore
-                    await updateProfile(auth.currentUser, { photoURL });
-
-                    await setDoc(doc(db, "users", userId), { photoURL }, { merge: true });
-
-                    // 🔹 Força o navegador a pegar a imagem atualizada
-                    document.getElementById("profileAvatar").src = photoURL + "?t=" + new Date().getTime();
-
-                    alert("✅ Foto de perfil atualizada!");
-                } catch (error) {
-                    console.error("❌ Erro ao atualizar a foto:", error);
-                    alert("Erro ao atualizar a foto de perfil.");
-                }
-            }
-        });
-
-        fileInput.click();
-    });
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            document.getElementById("profileAvatar").src = data.photoURL || user.photoURL || "https://i.pravatar.cc/100";
+        }
+    }
 });
 
 
@@ -152,9 +140,17 @@ window.editarCampo = async function (campo) {
     const novoValor = prompt(`Digite o novo valor para ${campo}:`);
     if (novoValor !== null && novoValor.trim() !== "") {
 
+        // 🔹 Obtém o usuário autenticado
+        const user = auth.currentUser;
+        if (!user) {
+            alert("Erro: usuário não autenticado.");
+            return;
+        }
+        const userId = user.uid; // 🔹 Obtém o ID do usuário
+
         // 🔹 Mapeia os campos corretamente para os IDs no HTML
         const campoIdMap = {
-            displayName: "profileName",  // 🔹 Mapeia "displayName" corretamente
+            displayName: "profileName",  // 🔹 Corrige "displayName" corretamente
             discord: "profileDiscord",
             celular: "profileCelular",
             email: "profileEmail"
@@ -164,7 +160,7 @@ window.editarCampo = async function (campo) {
         const campoElemento = document.getElementById(campoIdMap[campo] || `profile${campo.charAt(0).toUpperCase() + campo.slice(1)}`);
 
         if (!campoElemento) {
-            console.error(`Elemento com ID ${campoIdMap[campo]} não encontrado.`);
+            console.error(`❌ Elemento com ID ${campoIdMap[campo]} não encontrado.`);
             return;
         }
 
@@ -175,6 +171,17 @@ window.editarCampo = async function (campo) {
         const userRef = doc(db, "users", userId);
         await setDoc(userRef, { [campo]: novoValor }, { merge: true });
 
-        alert("Perfil atualizado!");
+        // 🔹 Se o campo for "displayName", também atualiza no Firebase Authentication
+        if (campo === "displayName") {
+            try {
+                await updateProfile(user, { displayName: novoValor });
+                console.log("✅ Nome atualizado no Firebase Authentication!");
+            } catch (error) {
+                console.error("❌ Erro ao atualizar nome no Authentication:", error);
+            }
+        }
+
+        alert("✅ Perfil atualizado!");
     }
 };
+
