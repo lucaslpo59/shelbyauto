@@ -1,11 +1,9 @@
-// 🔹 Importa os módulos do Firebase
+// 🔹 Importa os módulos do Firebase corretamente
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-
-
-// 🔹 Configuração do Firebase (use a mesma do seu projeto)
+// 🔹 Configuração do Firebase (Mantenha os mesmos dados do projeto)
 const firebaseConfig = {
     apiKey: "AIzaSyCmzjt8A60JQvqiARuqqySxZQ3EnxQ05Tw",
     authDomain: "shelbyauto-4c8f5.firebaseapp.com",
@@ -22,49 +20,59 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // 🔹 Garante que as informações do usuário são carregadas corretamente
-onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        console.log("✅ Usuário autenticado:", user.uid);
+document.addEventListener("DOMContentLoaded", () => {
+    const userDisplay = document.getElementById("userName"); // Nome do usuário
+    const userAvatar = document.getElementById("userAvatar"); // Foto do usuário
+    const logoutBtn = document.getElementById("logout"); // Botão de logout
+    const loginRegister = document.getElementById("loginRegister"); // Link de login
+    const userMenu = document.getElementById("userMenu"); // Menu do usuário
 
-        // Atualiza o nome e a foto do usuário no menu superior
-        document.getElementById("userName").textContent = user.displayName || "Usuário";
-        document.getElementById("userAvatar").src = user.photoURL || "https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png";
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            console.log("✅ Usuário autenticado:", user.uid);
 
-        // 🔹 Obtém dados adicionais do Firestore
-        const userRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(userRef);
+            // 🔹 Obtém dados adicionais do Firestore
+            const userRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(userRef);
 
-        if (docSnap.exists()) {
-            const userData = docSnap.data();
+            if (docSnap.exists()) {
+                const userData = docSnap.data();
 
-            // Atualiza o nome e a foto, se existirem no Firestore
-            if (userData.displayName) {
-                document.getElementById("userName").textContent = userData.displayName;
+                // ✅ Atualiza a interface com os dados do usuário
+                userDisplay.textContent = userData.displayName || "Usuário";
+                userAvatar.src = userData.photoURL || "https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png";
+
+            } else {
+                console.warn("⚠️ Nenhum documento encontrado no Firestore para este usuário.");
+                userDisplay.textContent = "Usuário";
             }
-            if (userData.photoURL) {
-                document.getElementById("userAvatar").src = userData.photoURL;
-            }
+
+            // 🔹 Exibe o menu do usuário e oculta o botão de login
+            userMenu.style.display = "block";
+            loginRegister.style.display = "none";
+
         } else {
-            console.warn("⚠️ Nenhum documento encontrado no Firestore para este usuário.");
+            console.warn("⚠️ Nenhum usuário autenticado! Redirecionando...");
+            
+            // 🔹 Oculta o menu do usuário e exibe o botão de login
+            userMenu.style.display = "none";
+            loginRegister.style.display = "block";
         }
-    } else {
-        console.error("❌ Nenhum usuário autenticado. Redirecionando...");
-        window.location.href = "index.html"; // Redireciona para login
+    });
+
+    // 🔹 Função de Logout
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", async (event) => {
+            event.preventDefault();
+            try {
+                await signOut(auth);
+                console.log("✅ Usuário deslogado com sucesso!");
+                alert("Você saiu da conta!");
+                window.location.href = "index.html"; // Redireciona para login
+            } catch (error) {
+                console.error("❌ Erro ao sair:", error);
+                alert("Erro ao sair. Verifique o console.");
+            }
+        });
     }
 });
-
-// Função para buscar os dados do usuário autenticado
-async function getUserData(userId) {
-    try {
-        const userDoc = await getDoc(doc(db, "users", userId));
-        if (userDoc.exists()) {
-            return userDoc.data(); // Retorna os dados do Firestore
-        } else {
-            console.error("❌ Usuário não encontrado no Firestore.");
-            return null;
-        }
-    } catch (error) {
-        console.error("❌ Erro ao buscar dados do Firestore:", error);
-        return null;
-    }
-}
