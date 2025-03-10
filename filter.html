@@ -13,13 +13,10 @@
 
 
 <body>
-    <script type="module" src="assets/js/auth.js"></script>
-<script type="module" src="assets/js/profile.js"></script>
     <header class="">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <img src="https://i.ibb.co/QyrTP0y/A-c-pia.png"
-                    alt="Logo Concessionária GTA RP" style="height: 50px;">
+                <img src="https://i.ibb.co/QyrTP0y/A-c-pia.png" alt="Logo Concessionária GTA RP" style="height: 50px;">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
                     <span class="navbar-toggler-icon"></span>
@@ -38,19 +35,20 @@
                 <!-- Menu do Usuário -->
                 <div class="user-menu" id="userMenu">
                     <div class="user-profile" onclick="toggleMenu()">
-                        <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png" id="userAvatar" alt="Avatar">
+                        <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png" id="userAvatar"
+                            alt="Avatar">
                         <span id="userName">Usuário</span>
                         <i class="arrow-down"></i> <!-- Ícone de seta -->
                     </div>
 
-                    
+
                     <div class="dropdown-menu" id="dropdownMenu">
                         <ul>
                             <li><a href="profile.html"><i class="fas fa-user"></i> Meu Perfil</a></li>
                             <li><a href="settings.html"><i class="fas fa-cog"></i> Configurações</a></li>
-                            <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                            <li><a href="index.html" id="logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                         </ul>
-                    </div>   
+                    </div>
                 </div>
 
                 <!-- Link para login/registro -->
@@ -73,10 +71,119 @@
     <script>
         const carros = [
             {
+                nome: "GM Kadett GSI",
+                preco: "R$ 78.999,00",
+                fipe: "R$ 69.900,00",
+                km: "001259 KM",
+                cambio: "Manual",
+                placa: "ZTB-5745",
+
+                vendido: true,  // false = 🔴 Carro foi vendido
+                imagens: ["https://i.ibb.co/xKjPS2QN/image.png", "https://i.ibb.co/jZVqQB2f/image.png", "https://i.ibb.co/ZpNNrmLz/image.png"
+                ],
+                specs: [
+                    "<strong>Pistão:</strong> Original",
+                    "<strong>Biela:</strong> Original",
+                    "<strong>Cabeçote:</strong> Original",
+                    "<strong>Comando:</strong> Original",
+                    "<strong>Radiador:</strong> Original",
+                    "<strong>Nitro:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Turbo:</strong> <span style='color:green;'>50/63</span>",
+                    "<strong>Radiador de Óleo:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Intercooler:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Câmbio:</strong> <span style='color:yellow;'>Alongado</span>",
+                    "<strong>Suspensão:</strong> Original",
+                    "<strong>Freios:</strong> Original",
+                    "<strong>Downpipe:</strong> <span style='color:lightgreen;'>Alto Fluxo INOX</span>",
+                    "<strong>Coletor ADM:</strong> Original",
+                    "<strong>Moral:</strong> <span style='color:green;'>18/200</span>"
+                ],
+                documentation: {
+                    roda: "Sim",
+                    turbo: "Sim",
+                    cor: "Branco",
+                    legalizado: true
+                }
+            },
+
+
+            {
+                nome: "GM Chevette DL ",
+                preco: "R$ 36.799,00",
+                fipe: "R$ 20.000,00",
+                km: "002087 KM",
+                cambio: "Manual",
+                placa: "YPH-0030",
+
+                vendido: true,  // false = 🔴 Carro foi vendido
+                imagens: ["https://i.ibb.co/BSjNSdw/image.png","https://i.ibb.co/gFLJjppw/image.png","https://i.ibb.co/xSsdsnQT/image.png","https://i.ibb.co/MkJJ5Nmc/image.png"
+                ],
+                specs: [
+                    "<strong>Pistão:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Biela:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Cabeçote:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Comando:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Radiador:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Nitro:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Turbo:</strong> <span style='color:green;'>50/48</span>",
+                    "<strong>Radiador de Óleo:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Intercooler:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Câmbio:</strong> <span style='color:lightgreen;'>Alongado</span>",
+                    "<strong>Suspensão:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Freios:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Downpipe:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Coletor ADM:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Moral:</strong> <span style='color:green;'>118/200</span>"
+                ],
+                documentation: {
+                    roda: "Não",
+                    turbo: "Não",
+                    cor: "Prata",
+                    legalizado: false
+                }
+            },
+
+
+            {
+                nome: "GM Chevette DL ",
+                preco: "R$ 36.799,00",
+                fipe: "R$ 20.000,00",
+                km: "002087 KM",
+                cambio: "Manual",
+                placa: "TZQ-6608",
+
+                vendido: true,  // false = 🔴 Carro foi vendido
+                imagens: ["https://i.ibb.co/W4z89DfP/image.png", "https://i.ibb.co/v6ctDK0V/image.png", "https://i.ibb.co/MDxyVXzr/image.png"
+                ],
+                specs: [
+                    "<strong>Pistão:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Biela:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Cabeçote:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Comando:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Radiador:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Nitro:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Turbo:</strong> <span style='color:green;'>50/48</span>",
+                    "<strong>Radiador de Óleo:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Intercooler:</strong> <span style='color:red;'>Não</span>",
+                    "<strong>Câmbio:</strong> <span style='color:lightgreen;'>Alongado</span>",
+                    "<strong>Suspensão:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Freios:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Downpipe:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Coletor ADM:</strong> <span style='color:yellow;'>Original</span>",
+                    "<strong>Moral:</strong> <span style='color:green;'>25/200</span>"
+                ],
+                documentation: {
+                    roda: "Não",
+                    turbo: "Não",
+                    cor: "Vermelho",
+                    legalizado: false
+                }
+            },
+            {
                 nome: "GOL G4 RALLY",
                 preco: "R$ 15.750,00",
                 fipe: "R$ 21.00,00",
-                km: "000.410 KM",
+                km: "000410 KM",
                 cambio: "Manual",
                 placa: "XJR-0532",
 
@@ -111,7 +218,8 @@
             },
         ];
 
-        carros.forEach((carro, index) => { document.write(`
+        carros.forEach((carro, index) => {
+            document.write(`
 <div class="product-item">
     <div class="product-content">
         <div class="carousel" id="carousel-${index}">
@@ -150,47 +258,17 @@
                 ${carro.documentation.legalizado ? 'Legalizado' : 'Não Legalizado'}
             </p>
         </div>
-        <div class="form-popup" id="form-${index}">
-            <h2>FAZER UMA PROPOSTA</h2>
-            <input type="hidden" id="carroImagem-${index}">
-            <input type="hidden" id="carroNome-${index}" name="carroNome">
-            <input type="hidden" id="carroPreco-${index}" name="carroPreco">
-            <input type="hidden" id="carroFipe-${index}" name="carroFipe">
-            <input type="hidden" id="carroKm-${index}" name="carroKm">
-            <input type="hidden" id="carroCambio-${index}" name="carroCambio">
-            <input type="hidden" id="carroPlaca-${index}" name="carroPlaca">
-
-
-            <input type="text" id="nome-${index}" class="popup-input" placeholder="Nome In-Game">
-            <input type="text" id="discord-${index}" class="popup-input" placeholder="Discord">
-            <input type="text" id="celular-${index}" class="popup-input" placeholder="Celular In-Game">
-            <textarea id="comentario-${index}" class="popup-textarea" placeholder="Escreva aqui a sua proposta..."></textarea>
-
-            <div class="upload-container">
-                <label for="fotoCarro-${index}" class="upload-label">
-                    📸 Enviar Foto do Veículo:
-                </label>
-                <input type="file" id="fotoCarro-${index}" class="upload-input" accept="image/*">
-                <span id="file-name-${index}" class="file-name">Nenhum arquivo escolhido</span>
-            </div>
-
-            <div class="popup-btn-container">
-                <button class="popup-btn submit" onclick="enviarFormulario(${index})">Enviar</button>
-                <button class="popup-btn close" onclick="closeForm(${index})">Fechar</button>
-            </div>
-        </div>
-
-
-    </div>
+    </div>  
 </div>
-`); });
-</script>
+`);
+        });
+    </script>
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="inner-content">
-                        <p>COPYRIGHT © 2025 SHELBY AUTO ( BRASILIA RP ) SERVER 2 - DESENVOLVIDO BY 
+                        <p>COPYRIGHT © 2025 SHELBY AUTO ( BRASILIA RP ) SERVER 2 - DESENVOLVIDO BY
                             <a href="#">Shelby Enterprises L.L.C</a>
                         </p>
                     </div>
@@ -201,11 +279,11 @@
 
     <script>
         document.querySelectorAll(".upload-input").forEach(input => {
-    input.addEventListener("change", function () {
-        let fileName = this.files.length > 0 ? this.files[0].name : "Nenhum arquivo escolhido";
-        document.getElementById(`file-name-${this.id.split("-")[1]}`).textContent = fileName;
-    });
-});
+            input.addEventListener("change", function () {
+                let fileName = this.files.length > 0 ? this.files[0].name : "Nenhum arquivo escolhido";
+                document.getElementById(`file-name-${this.id.split("-")[1]}`).textContent = fileName;
+            });
+        });
 
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll(".form-btn").forEach(button => {
@@ -222,84 +300,84 @@
         });
 
         function openForm(index) {
-    let form = document.getElementById(`form-${index}`);
+            let form = document.getElementById(`form-${index}`);
 
-    if (!form) {
-        console.error(`❌ Erro: Formulário form-${index} não encontrado.`);
-        return;
-    }
-
-    form.style.display = "flex";
-    setTimeout(() => {
-        form.classList.add("show"); // 🔹 Adiciona a animação ao abrir
-    }, 10);
-
-    let productItem = document.querySelectorAll(".product-item")[index];
-
-    if (!productItem) {
-        console.error("❌ Erro: O elemento .product-item não foi encontrado.");
-        return;
-    }
-
-    let carRect = productItem.getBoundingClientRect();
-    form.style.left = `${carRect.right + 15}px`;
-    form.style.top = `${carRect.top}px`;
-
-    // 🔹 Pegando informações completas do carro
-    if (carros[index]) {
-        let carro = carros[index];
-
-        // 🛑 Atualiza os campos ocultos no formulário
-        document.getElementById(`carroNome-${index}`).value = carro.nome;
-        document.getElementById(`carroPreco-${index}`).value = carro.preco;
-        document.getElementById(`carroFipe-${index}`).value = carro.fipe;
-        document.getElementById(`carroKm-${index}`).value = carro.km;
-        document.getElementById(`carroCambio-${index}`).value = carro.cambio;
-        document.getElementById(`carroPlaca-${index}`).value = carro.placa;
-        let campoImagem = document.getElementById(`carroImagem-${index}`);
-if (campoImagem) {
-    campoImagem.value = carro.imagem || "";
-}
-    } else {
-        console.warn(`⚠️ Nenhum carro encontrado no índice ${index}`);
-    }
-
-    // 🔹 Adicionando evento ao botão de envio do formulário
-    let submitButton = form.querySelector(".popup-btn.submit");
-    if (submitButton) {
-        submitButton.onclick = function () {
-            enviarFormulario(index);
-        };
-    }
-}
-
-// 🔹 Função para converter imagem em Base64
-function converterImagemBase64(file) {
-    return new Promise((resolve, reject) => {
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
-}
-
-// 🔹 Função para fechar o formulário e limpar os campos
-function closeForm(index) {
-    let form = document.getElementById(`form-${index}`);
-    if (form) {
-        form.classList.remove("show"); // 🔹 Remove animação de abertura
-        setTimeout(() => {
-            form.style.display = "none";
-        }, 300);
-
-        // 🔹 Limpa os campos do formulário, incluindo inputs e textarea
-        form.querySelectorAll("input, textarea").forEach(input => {
-            if (input.type !== "hidden") { // Mantém os campos ocultos com informações do carro
-                input.value = "";
+            if (!form) {
+                console.error(`❌ Erro: Formulário form-${index} não encontrado.`);
+                return;
             }
-        });
-    }
-}
+
+            form.style.display = "flex";
+            setTimeout(() => {
+                form.classList.add("show"); // 🔹 Adiciona a animação ao abrir
+            }, 10);
+
+            let productItem = document.querySelectorAll(".product-item")[index];
+
+            if (!productItem) {
+                console.error("❌ Erro: O elemento .product-item não foi encontrado.");
+                return;
+            }
+
+            let carRect = productItem.getBoundingClientRect();
+            form.style.left = `${carRect.right + 15}px`;
+            form.style.top = `${carRect.top}px`;
+
+            // 🔹 Pegando informações completas do carro
+            if (carros[index]) {
+                let carro = carros[index];
+
+                // 🛑 Atualiza os campos ocultos no formulário
+                document.getElementById(`carroNome-${index}`).value = carro.nome;
+                document.getElementById(`carroPreco-${index}`).value = carro.preco;
+                document.getElementById(`carroFipe-${index}`).value = carro.fipe;
+                document.getElementById(`carroKm-${index}`).value = carro.km;
+                document.getElementById(`carroCambio-${index}`).value = carro.cambio;
+                document.getElementById(`carroPlaca-${index}`).value = carro.placa;
+                let campoImagem = document.getElementById(`carroImagem-${index}`);
+                if (campoImagem) {
+                    campoImagem.value = carro.imagem || "";
+                }
+            } else {
+                console.warn(`⚠️ Nenhum carro encontrado no índice ${index}`);
+            }
+
+            // 🔹 Adicionando evento ao botão de envio do formulário
+            let submitButton = form.querySelector(".popup-btn.submit");
+            if (submitButton) {
+                submitButton.onclick = function () {
+                    enviarFormulario(index);
+                };
+            }
+        }
+
+        // 🔹 Função para converter imagem em Base64
+        function converterImagemBase64(file) {
+            return new Promise((resolve, reject) => {
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // 🔹 Função para fechar o formulário e limpar os campos
+        function closeForm(index) {
+            let form = document.getElementById(`form-${index}`);
+            if (form) {
+                form.classList.remove("show"); // 🔹 Remove animação de abertura
+                setTimeout(() => {
+                    form.style.display = "none";
+                }, 300);
+
+                // 🔹 Limpa os campos do formulário, incluindo inputs e textarea
+                form.querySelectorAll("input, textarea").forEach(input => {
+                    if (input.type !== "hidden") { // Mantém os campos ocultos com informações do carro
+                        input.value = "";
+                    }
+                });
+            }
+        }
 
         // 🔹 Função para enviar o formulário
         function enviarFormulario(index) {
@@ -324,30 +402,30 @@ function closeForm(index) {
 
     <script>
 
-function enviarFormulario(index) {
-    let nomeCarro = document.getElementById(`carroNome-${index}`).value;
-    let carroPreco = document.getElementById(`carroPreco-${index}`).value;
-    let carroFipe = document.getElementById(`carroFipe-${index}`).value;
-    let carroKm = document.getElementById(`carroKm-${index}`).value;
-    let carroCambio = document.getElementById(`carroCambio-${index}`).value;
-    let carroPlaca = document.getElementById(`carroPlaca-${index}`).value;
-    let nome = document.getElementById(`nome-${index}`).value;
-    let discord = document.getElementById(`discord-${index}`).value;
-    let celular = document.getElementById(`celular-${index}`).value;
-    let comentario = document.getElementById(`comentario-${index}`).value || "Nenhum comentário";
-    let fotoInput = document.getElementById(`fotoCarro-${index}`);
-    let foto = fotoInput && fotoInput.files.length > 0 ? fotoInput.files[0] : null;
+        function enviarFormulario(index) {
+            let nomeCarro = document.getElementById(`carroNome-${index}`).value;
+            let carroPreco = document.getElementById(`carroPreco-${index}`).value;
+            let carroFipe = document.getElementById(`carroFipe-${index}`).value;
+            let carroKm = document.getElementById(`carroKm-${index}`).value;
+            let carroCambio = document.getElementById(`carroCambio-${index}`).value;
+            let carroPlaca = document.getElementById(`carroPlaca-${index}`).value;
+            let nome = document.getElementById(`nome-${index}`).value;
+            let discord = document.getElementById(`discord-${index}`).value;
+            let celular = document.getElementById(`celular-${index}`).value;
+            let comentario = document.getElementById(`comentario-${index}`).value || "Nenhum comentário";
+            let fotoInput = document.getElementById(`fotoCarro-${index}`);
+            let foto = fotoInput && fotoInput.files.length > 0 ? fotoInput.files[0] : null;
 
-    if (!nome || !discord || !celular) {
-        alert("Por favor, preencha todos os campos obrigatórios.");
-        return;
-    }
+            if (!nome || !discord || !celular) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
 
-    function enviarParaDiscord(fotoURL = null) {
-        let mensagem = {
-            username: "Novo Formulário",
-            avatar_url: "https://img.freepik.com/psd-gratuitas/icone-do-whatsapp-isolado-ilustracao-de-renderizacao-3d_47987-9785.jpg",
-            content: `📩 **SAQ > ( Entrar Em Contato )**\n\n
+            function enviarParaDiscord(fotoURL = null) {
+                let mensagem = {
+                    username: "Novo Formulário",
+                    avatar_url: "https://img.freepik.com/psd-gratuitas/icone-do-whatsapp-isolado-ilustracao-de-renderizacao-3d_47987-9785.jpg",
+                    content: `📩 **SAQ > ( Entrar Em Contato )**\n\n
 ### 🔹 **Informações do Veículo:**\n
 🚗 **Carro:** \`${nomeCarro}\`\n
 💰 **Preço:** \`${carroPreco}\`\n
@@ -363,86 +441,83 @@ function enviarFormulario(index) {
 💬 **Comentário:** \`${comentario}\`\n
 ${fotoURL ? `🖼️ **Foto do Veículo:** [Clique para ver](${fotoURL})\n` : ""}
 `
-        };
+                };
 
-        fetch("https://discordapp.com/api/webhooks/1343741774644117534/zoYLMvqda0hJRJNjDtBzE_3DNN9-EY651LjHIdpNSCygGjHE-Xjxln0uxjBSIbq8RiiZ", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(mensagem)
-        }).then(response => {
-            if (response.ok) {
-                alert("✅ Formulário enviado com sucesso!");
-                closeForm(index); // Fecha o formulário após envio
-            } else {
-                alert("❌ Erro ao enviar formulário.");
+                fetch("https://discordapp.com/api/webhooks/1343741774644117534/zoYLMvqda0hJRJNjDtBzE_3DNN9-EY651LjHIdpNSCygGjHE-Xjxln0uxjBSIbq8RiiZ", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(mensagem)
+                }).then(response => {
+                    if (response.ok) {
+                        alert("✅ Formulário enviado com sucesso!");
+                        closeForm(index); // Fecha o formulário após envio
+                    } else {
+                        alert("❌ Erro ao enviar formulário.");
+                    }
+                }).catch(error => {
+                    alert("❌ Erro de conexão: " + error.message);
+                });
             }
-        }).catch(error => {
-            alert("❌ Erro de conexão: " + error.message);
-        });
-    }
 
-    // 🔹 Se houver imagem, faz upload antes de enviar
-    if (foto) {
-        let formData = new FormData();
-        formData.append("image", foto);
+            // 🔹 Se houver imagem, faz upload antes de enviar
+            if (foto) {
+                let formData = new FormData();
+                formData.append("image", foto);
 
-        fetch("https://api.imgbb.com/1/upload?key=a85bd55edbbb971f0b7d546e0830327b", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                enviarParaDiscord(data.data.url); // Envia para o Discord com o link da imagem
+                fetch("https://api.imgbb.com/1/upload?key=a85bd55edbbb971f0b7d546e0830327b", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            enviarParaDiscord(data.data.url); // Envia para o Discord com o link da imagem
+                        } else {
+                            console.error("Erro ao enviar imagem.");
+                            enviarParaDiscord(null); // Envia sem imagem
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erro ao enviar imagem:", error);
+                        enviarParaDiscord(null); // Envia sem imagem
+                    });
             } else {
-                console.error("Erro ao enviar imagem.");
-                enviarParaDiscord(null); // Envia sem imagem
+                enviarParaDiscord(null); // Se não houver imagem, apenas envia o formulário
             }
-        })
-        .catch(error => {
-            console.error("Erro ao enviar imagem:", error);
-            enviarParaDiscord(null); // Envia sem imagem
-        });
-    } else {
-        enviarParaDiscord(null); // Se não houver imagem, apenas envia o formulário
-    }
-}
-</script>
-
-<script>
-    function toggleMenu() {
-        let menu = document.getElementById("dropdownMenu");
-        menu.style.display = (menu.style.display === "block") ? "none" : "block";
-    }
-
-    // Fecha o menu se o usuário clicar fora dele
-    document.addEventListener("click", function (event) {
-        let menu = document.getElementById("dropdownMenu");
-        let profile = document.querySelector(".user-profile");
-
-        if (!profile.contains(event.target) && !menu.contains(event.target)) {
-            menu.style.display = "none";
         }
-    });
+    </script>
+
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById("dropdownMenu");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+
+        // Fecha o menu se o usuário clicar fora dele
+        document.addEventListener("click", function (event) {
+            let menu = document.getElementById("dropdownMenu");
+            let profile = document.querySelector(".user-profile");
+
+            if (!profile.contains(event.target) && !menu.contains(event.target)) {
+                menu.style.display = "none";
+            }
+        });
 
 
-function nextImage(index) {
-    const carouselImages = document.getElementById(`carousel-${index}`).querySelectorAll('.carousel-images img');
-    const activeIndex = Array.from(carouselImages).findIndex(img => img.classList.contains('active'));
-    const nextIndex = (activeIndex + 1) % carouselImages.length;
+        function nextImage(index) {
+            const carouselImages = document.getElementById(`carousel-${index}`).querySelectorAll('.carousel-images img');
+            const activeIndex = Array.from(carouselImages).findIndex(img => img.classList.contains('active'));
+            const nextIndex = (activeIndex + 1) % carouselImages.length;
 
-    carouselImages[activeIndex].classList.remove('active');
-    carouselImages[nextIndex].classList.add('active');
-}
+            carouselImages[activeIndex].classList.remove('active');
+            carouselImages[nextIndex].classList.add('active');
+        }
 
-</script>
+    </script>
 
     <!-- 🔹 Importando o Firebase e Script Global -->
-    <script type="module" src="assets/js/auth.js"></script>
-    <script type="module" src="assets/js/profile.js"></script>
-
     <!-- 🔹 Script para abrir/fechar o menu do usuário -->
     <script>
         function toggleMenu() {
@@ -462,7 +537,7 @@ function nextImage(index) {
     </script>
 
 
-<script type="module" src="assets/js/filter.js"></script>
+    <script type="module" src="assets/js/filter.js"></script>
 </body>
 
 </html>

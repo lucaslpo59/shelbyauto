@@ -78,15 +78,24 @@ onAuthStateChanged(auth, async (user) => {
 document.addEventListener("DOMContentLoaded", () => {
     const logoutBtn = document.getElementById("logout");
     if (logoutBtn) {
-        logoutBtn.addEventListener("click", function(event) {
+        logoutBtn.addEventListener("click", async function(event) {
             event.preventDefault();
-            signOut(auth).then(() => {
+
+            try {
+                await signOut(auth);
+                console.log("✅ Usuário saiu com sucesso!");
                 alert("Você saiu da conta!");
+                
+                // Verifica se realmente deslogou
+                setTimeout(() => {
+                    console.log("Usuário após logout:", auth.currentUser);
+                }, 2000);
+                
                 window.location.href = "index.html";
-            }).catch((error) => {
-                console.error("Erro ao sair:", error);
+            } catch (error) {
+                console.error("❌ Erro ao sair:", error);
                 alert("Erro ao sair. Verifique o console.");
-            });
+            }
         });
     }
 });

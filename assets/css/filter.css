@@ -54,6 +54,7 @@ header {
     color: #fff8f8;
     position: relative;
     margin-left: 40px;
+    margin-bottom: 25px;
 }
 
 @keyframes border-animation {
@@ -255,9 +256,8 @@ hr {
     opacity: 1;
     transform: scale(1);
     display: flex;
-    left: 1328px;
-    top: 163.75px;
 }
+
 
 /* 🔹 Botão moderno */
 .form-btn {
@@ -493,12 +493,13 @@ footer .inner-content a {
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: 105%; /* Mantém o formulário ao lado do carro */
+    left: 100%; /* Mantém o formulário alinhado ao lado do carro */
     margin-left: -70px;
     margin-top: -110px;
     background: linear-gradient(269deg, #efeded, #efeded);
     width: 450px;
     height: 520px;
+    top: 0; /* Alinha no topo */
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
@@ -508,17 +509,17 @@ footer .inner-content a {
     opacity: 0; /* 🔹 Inicia invisível */
     transform: scale(0.9); /* 🔹 Efeito de zoom */
     transition: all 0.3s ease-in-out;
+    transform: translateX(10px); /* Pequeno ajuste para melhor espaçamento */
+}
 }
 
 /* 🔹 Quando for exibido, faz a animação */
 .form-popup.show {
-    display: flex;
+    display: flex;  /* Certifica que os elementos fiquem organizados */
     opacity: 1;
-    transform: scale(1);
-    display: flex;
-    /* left: 1228px; */
-    /* top: 163.75px;*/
+    transform: scale(1); /* Remove o efeito de "encolhido" ao abrir */
 }
+
 
 /* 🔹 Mantém o título azul gradiente */
 .form-popup h2 {
@@ -732,3 +733,22 @@ footer .inner-content a {
 	  background: gray; 
 	  color: white;
   }
+
+  @media (max-width: 1024px) {
+    .form-popup {
+        left: 100%;
+        transform: translateX(-100%); /* Mantém ao lado do carro sem sair da tela */
+    }
+}
+
+@media (max-width: 768px) {
+    .form-popup {
+        position: fixed; /* Em telas pequenas, centraliza o formulário */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 350px;
+        z-index: 9999;
+    }
+}

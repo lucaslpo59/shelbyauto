@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/paineluser.css">
     <link rel="stylesheet" href="assets/css/filter.css">
+    
   </head>
   <body>
     <!-- Preloader -->
@@ -46,21 +47,24 @@
                 </li> 
                 <li class="nav-item"><a class="nav-link" href="filter.html">NOSSO ESTOQUE</a></li>
 
+                <!-- Menu do Usuário -->
                 <div class="user-menu" id="userMenu">
                   <div class="user-profile" onclick="toggleMenu()">
-                      <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png" id="userAvatar" alt="Avatar">
-                      <span id="profileName">Usuário</span>
+                      <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png" id="userAvatar"
+                          alt="Avatar">
+                      <span id="userName">Usuário</span>
                       <i class="arrow-down"></i> <!-- Ícone de seta -->
                   </div>
+
+
                   <div class="dropdown-menu" id="dropdownMenu">
                       <ul>
-                          <li><a href="profile.html"><i class="fas fa-user"></i> Meu Perfil</a></li>
-                          <li><a href="settings.html"><i class="fas fa-cog"></i> Configurações</a></li>
-                          <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Meu Perfil</a></li>
+                        <li><a href="settings.html"><i class="fas fa-cog"></i> Configurações</a></li>
+                        <li><a href="index.html" id="logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                       </ul>
                   </div>
               </div>
-              
               <!-- Link para login/registro -->
               <div id="loginRegister" style="display: none;">
                   <a href="index.html">Fazer Login / Registrar</a>
@@ -73,53 +77,6 @@
         </div>
       </nav>
     </header>
-
-
-    <script type="module">
-      // 🔹 Importando Firebase
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-      import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-  
-      // 🔹 Configuração do Firebase (substitua pelos seus dados)
-      const firebaseConfig = {
-        apiKey: "AIzaSyCmzjt8A60JQvqiARuqqySxZQ3EnxQ05Tw",
-    authDomain: "shelbyauto-4c8f5.firebaseapp.com",
-    projectId: "shelbyauto-4c8f5",
-    storageBucket: "shelbyauto-4c8f5.appspot.com",
-
-    messagingSenderId: "118535915272",
-    appId: "1:118535915272:web:60912ed96a3d202175cebd",
-    measurementId: "G-MYQG7J4YZK"
-      };
-  
-      // 🔹 Inicializando Firebase
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
-  
-      // 🔹 Função para atualizar o contador de visitas
-      async function atualizarContador() {
-          const contadorRef = doc(db, "visitas", "contador");
-  
-          try {
-              const snapshot = await getDoc(contadorRef);
-              if (snapshot.exists()) {
-                  // Se já existe, atualiza o contador
-                  let visitasAtuais = snapshot.data().total || 0;
-                  await updateDoc(contadorRef, { total: visitasAtuais + 1 });
-                  document.getElementById("contador-visitantes").textContent = visitasAtuais + 1;
-              } else {
-                  // Se não existe, cria o contador
-                  await setDoc(contadorRef, { total: 1 });
-                  document.getElementById("contador-visitantes").textContent = 1;
-              }
-          } catch (error) {
-              console.error("Erro ao atualizar o contador:", error);
-          }
-      }
-  
-      // 🔹 Chama a função quando a página carrega
-      atualizarContador();
-  </script>
 
 
     <!-- Vídeo Local -->
@@ -164,60 +121,10 @@
               menu.style.display = "none";
           }
       });
-  
-      // Simulação de usuário logado (pode vir de API, LocalStorage ou Backend)
-      document.addEventListener("DOMContentLoaded", function () {
-          let user = {
-              name: "Lucas",
-              avatar: "https://i.pravatar.cc/50" // Altere para o avatar real
-          };
-  
-          // Atualiza os dados do usuário
-          document.getElementById("userName").textContent = user.name;
-          document.getElementById("userAvatar").src = user.avatar;
-      });
+
   </script>
 
-
-<script type="module">
-  // 🔹 Importando Firebase Auth
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-  // 🔹 Obtém a instância de autenticação do Firebase
-  const auth = getAuth();
-
-  // 🔹 Observa mudanças no estado de autenticação (login/logout)
-  onAuthStateChanged(auth, (user) => {
-      if (user) {
-          // Se o usuário estiver logado, exibe o menu com os dados
-          document.querySelector(".user-profile").style.display = "flex";
-          document.getElementById("loginRegister").style.display = "none"; // Esconde o link de login
-
-          document.getElementById("userName").textContent = user.displayName || "Usuário";
-          document.getElementById("userAvatar").src = user.photoURL || "https://i.pravatar.cc/50";
-
-      } else {
-          // Se não estiver logado, esconde o menu e exibe "Fazer Login / Registrar"
-          document.querySelector(".user-profile").style.display = "none";
-          document.getElementById("loginRegister").style.display = "block";
-      }
-  });
-
-  // 🔹 Logout do usuário
-  document.getElementById("logout").addEventListener("click", function(event) {
-      event.preventDefault(); // Evita recarregar a página
-
-      signOut(auth).then(() => {
-          alert("Você saiu da conta!");
-          window.location.href = "index.html"; // Redireciona para a página de login
-      }).catch((error) => {
-          console.error("Erro ao sair:", error);
-          alert("Erro ao sair. Verifique o console.");
-      });
-  });
-</script>
-
-
+<script type="module" src="assets/js/homepage.js"></script>
     <!-- 🔹 Importando o Firebase e Script Global -->
  
 
